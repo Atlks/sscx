@@ -1,0 +1,33 @@
+
+
+
+
+
+
+  '上分申请成功' => $bot_words->Recharge_Finish,
+
+
+
+从cmd里面分离处理cmd   查100》》call recharge
+
+      public function callRecharge($text = null)
+      {
+          //$text = "";
+          if ($this->player) {
+              if (preg_match('/\d+/', $text, $out)) {
+                  $amount = $out[0] * 100;
+                  if ($amount > 9000000000) return "";
+                  if ($this->player->isTest() || !$this->use_paybot)
+                      $this->player->Recharge($amount, $this->message_id, "");
+                  if ($this->use_paybot) {
+                      $text = "上下分步骤：\n1️⃣入款流程：点击下方【充值提现】\n2️⃣点击菜单【充值】复制上分地址充值\n3️⃣成功到帐后自动到游戏余额 无需查分!";
+                      $this->keyboard = json_decode(GameString::where('name', '上分机器人')->find()->text);
+                  } else {
+                      $text = $this->getWords(' 上分申请成功');
+                  }
+                  return $text;
+
+
+
+
+      public function Recharge($amount, $message_id, $remark)

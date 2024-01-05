@@ -1,0 +1,25 @@
+##-------------设置webhook
+
+webhook地址是  https://game.gq1sx.cc/index.php?s=handle2/index
+
+https://api.telegram.org/bot6326214984:AAHoyB0GjWQ7E5fhdWhWPxl7ZWrlWvAop5g/setWebhook?url=https%3A%2F%2Fgame.gq1sx.cc%2Findex.php%3Fs%3Dhandle2%2Findex
+
+
+
+http://ssc.521ck.vip/index.php?s=index/setHookSsc
+
+
+
+------查看wbhk
+http://ssc.521ck.vip/HookInfo
+https://api.telegram.org/bot6326214984:AAHoyB0GjWQ7E5fhdWhWPxl7ZWrlWvAop5g/getWebhookInfo
+
+
+
+
+## 设置日志权限
+
+
+
+chmod -R 777 /www/wwwroot/ssc.521ck.vip/runtime
+chmod -R 777 /www/wwwroot/game.gq1sx.cc/runtime

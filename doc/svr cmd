@@ -1,0 +1,32 @@
+
+
+
+
+#异步任务进程  自动上分
+php app/common/timer_starter.php
+
+
+
+
+
+ 主进程
+php  app/main_cmd.php
+
+
+
+
+
+# chkbot 进程
+php public/handleupdates.php
+
+
+
+日志清理定时器
+
+
+
+
+
+设置日志权限
+
+chmod -R 777 /www/wwwroot/game.gq1sx.cc/runtime

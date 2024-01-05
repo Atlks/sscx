@@ -1,0 +1,10 @@
+export关键字
+
+export关键字将一个模块中的变量、函数、类等导出
+
+方式一：export声明语句
+
+export const name = "xxx"
+export const age = 18
+export function bar() {}
+export class Person {}

@@ -1,0 +1,18 @@
+tp logx sys 
+
+log.php  info()
+
+log()
+record()
+
+>>>
+
+channel.php..record  ()
+
+    //this logger is   think\log\driver\File
+	
+	
+	File.php  save()
+	
+	
+	

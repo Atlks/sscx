@@ -1,0 +1,418 @@
+Atitit  服务器运维linux常用命令attilax总结.docx
+
+##################### nginx  
+######################### 查看日志   
+#################### fac server tomcat   11.93
+#############fac server tomcat   11.93  wecaht backed  publish
+#############fac server tomcat   11.93 admin 
+##################   压缩解压
+######### 备份mysql
+###########  用户维护
+##########其他
+
+
+
+rm -f zx-200.22-200[0-8]*.logrm
+rm -f d:\cache\leisu*.*
+rm -f  *.htm
+rm -f   *leisu2020-06-10 16_*.htm 
+rm -f   *leisu2020-06-10 *.htm 
+tail    ^H^H^H^H^H
+  # tail -f /usr/local/web-tomcat8/logs/catalina.out 
+  
+##################### nginx  
+  
+ /etc/nginx -s reload 
+ /tt/www/web-nginx1142/sbin/nginx -s reload 
+
+/usr/sbin/nginx -s reload     (36.serv)
+ usr/sbin/nginx -s reload 
+  
+  /opt/gitlab/service/nginx -s reload 
+  
+   /usr/share/nginx -s reload 
+   
+   
+ 
+ #################find
+ 
+  find / -name nginx.conf
+    find / -name nginx.conf
+   find / -name 	redis-server
+    find / -name  redis.conf
+   find / -name  rdb.dump
+   find / -name vnc4server
+ find / -name  ws.log
+find / -name SportApplication.log
+  /
+     /etc/nginx/nginx.conf
+
+rm /home/martin/SportApplication.log
+ 
+rm /data/depl/SportApplication.log
+rm /data/deployer2/sport-service/kok-sport-service/SportApplication.log
+rm  /data/deployer2/sport-service/SportApplication.log
+rm  /data/SportApplication.log
+rm  /SportApplication.log
+
+   
+######################### 查看日志   
+   
+ another win....   tail -f /usr/local/web-tomcat8/logs/catalina.out     
+   /usr/local/web-tomcat8/bin/startup.sh 
+  
+  
+
+  
+  
+  
+   another win....   tail -f /usr/local/admin-tomcat8/logs/catalina.out     
+  
+  ###############启动tomcat
+  
+   /usr/local/admin-tomcat8/bin/startup.sh 
+   
+   
+   
+   jenkins-tomcat8
+   
+     /usr/local/jenkins-tomcat8/bin/startup.sh 
+
+
+#################### fac server tomcat   11.93
+/tt/www/api-tomcat9/bin/startup.sh 
+/tt/www/admin-tomcat9/bin/startup.sh 
+ tail -f /tt/www/admin-tomcat9/logs/catalina.out     
+
+"C:\Program Files\Git\cmd\git.exe" clone git@www.chinesesr.com:group-tt-api/tt-api.git "H:\产品原型\tt-api33"
+"C:\Program Files\Git\bin\git.exe" clone git@www.chinesesr.com:group-tt-api/tt-api.git "H:\产品原型\tt-api35"
+
+
+git.exe clone --progress -v "git@www.chinesesr.com:group-tt-api/tt-api.git" "H:\产品原型\tt-api33"
+
+
+tar -cvjpf  /tt/ttApp339.tar /tt/app
+tar -cvjpf   /adminbek/admin329.tar /tt/www/admin-tomcat9/webapps/admin  
+
+
+tar -cvjpf  /tt/ttApp315.tar /tt/app
+
+　-z　　　　　　　　//使用gzip进行压缩/解压，一般使用.tar.gz后缀
+　-j　　　　　　　　//使用bzip2进行压缩/解压，一般使用.tar.bz2后缀
+
+tar -cvjpf  /tt/groupbuy325.tar  /tt/app/groupbuy
+
+unzip  /data/depl/kok-sport-service-1.0-SNAPSHOT.jar
+
+
+
+mv /tt/www/admin-tomcat9/webapps/admin.war ../backup
+
+
+
+#############fac server tomcat   11.93  wecaht backed  publish
+ 
+
+cp /api.war /tt/www/api-tomcat9/webapps/api.war  
+
+cp  /tt/www/api-tomcat9/webapps/api.war    /tt/www/api-tomcat9/backup/api.war.41
+ cp  /tt/www/api-tomcat9/backup/api.war.320    /tt/www/api-tomcat9/webapps/api.war 
+  cp  /tt/www/api-tomcat9/backup/api.war.41    /tt/www/api-tomcat9/webapps/api.war 
+/tt/www/api-tomcat9/bin/startup.sh 
+ps -ef|grep tomcat
+ tail -f /tt/www/api-tomcat9/logs/catalina.out   
+/tt/www/api-tomcat9/bin/startup.sh 
+
+/tt/www/api-tomcat9/webapps/api.war
+
+#############fac server tomcat   11.93 admin 
+
+
+cp /tt/www/admin-tomcat9/webapps/admin.war   /tt/www/admin-tomcat9/backup/admin.war.42
+mv /tt/www/admin-tomcat9/webapps/admin.war   /tt/www/admin-tomcat9/backup/admin.war.320
+ps -ef|grep tomcat 
+kill 
+ tail -f /tt/www/admin-tomcat9/logs/catalina.out   
+/tt/www/admin-tomcat9/bin/startup.sh 
+/tt/www/api-tomcat9/bin/startup.sh 
+
+
+ls -R /tt/file_upload
+
+ls /tt/file_upload
+
+##################   压缩解压
+
+tar -cvjpf /tmp/prod3.tar /prod               (zip folder with foldername)
+tar -xvf   /tmp/prod3.tar -C   /tmp/mkdir2    (upzip with dolfername)
+
+cp  -r /prod/*   /tmp/mkdir2
+
+
+unzip -n /tt/www/api-tomcat9/webapps/api.war -d /tt/www/api-tomcat9/webapps/api
+
+tar -cvjpf  /tt/ttApp339.tar /tt/app
+tar -xvf  /tt/www/api-tomcat9/webapps/api.war
+
+unzip -n /tt/www/api-tomcat9/backup/tt-yxt-0.0.1-SNAPSHOT.war -d /tt/www/api-tomcat9/webapps/api
+
+
+
+######### 备份mysql
+D:\wamp\bin\mysql\mysql5.5.20\bin\mysqldump.exe -uroot -proot --set-charset=utf8 %dbname% --result-file=%sql_bakName%
+ 
+"C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe" --routines --complete-insert --set-gtid-purged=off --skip-add-locks --skip-lock-tables --set-charset=utf8 -hrm-uf625e3dst83ioo15to.mysql.rds.aliyuncs.com -utang123 -ptt     tt_formal --result-file=G:\dbbek\tt_formal419a.sql
+
+
+
+
+###########  用户维护
+
+useradd -d /tt/app frt
+
+useradd -d /home/jc -m jc
+ 
+
+
+
+##########其他
+java -cp   /sqlbek/classes:/lib/*  com.attilax.wechatToto.ProdwechatMenuScript 
+ java -cp  /sqlbek/classes:/lib/* com.attilax.wechatToto.ProdMenuWrite  /0db_tmpTable/prodTotoYonsyeteo_menu2019-04-01.175713.json
+ 
+nohup java -cp  /redisJsDriver/WEB-INF/classes:/redisJsDriver/miniPrjjars/*:/redisJsDriver/tomcatlib/*   redisJsDriverPkg.redisJsDriver 8888 /redisJsDriver > /redisSvs.log 2>&1 &    
+nohup java -cp  /targetBookmark/classes:/lib/*    aOPtool.clrusrTomcatStart 5201  /redisJsDriver > /clrusrTomcatStart.log 2>&1 &  
+
+ java -cp  /srv/redisDriver/classes:/libs/*  redisJsDriverPkg.residCmdShellParser  
+
+nohup  java -cp  /targetBookmark/classes:/lib/*    aOPtool.clrusrTomcatStart 5201  /libs > /clrusr.log 2>&1 &  
+nohup  java -cp  /targetBookmark/classes:/lib/*    aOPtool.clrusrTomcatStart 5202  /libs > /clrusr.log 2>&1 &  
+nohup  java -cp  /targetBookmark/classes:/lib/*    aOPtool.clrusrTomcatStart 5206  /libs > /clrusr5204.log 2>&1 &  
+
+ http://47.100.12.36:8888/api_redis?param=-cfg /0db/redis_36.txt -get access_token
+ http://47.100.12.36:888/api_redis?param=-cfg /0db/redis_36.txt -get access_token
+ http://stoken.chinesesr.com/tokenapp/api_redis?param=-cfg /0db/redis_36.txt -get access_token
+ 
+ 
+ /0db_tmpTable/prodTotoYonsyeteo_menu111.json
+ 
+ pdm#1921@
+ 
+ scp root@172.19.162.236:/tt/www/admin-tomcat9/webapps/admin.war /tt/www/admin-tomcat9/webapps/
+  scp root@172.19.162.236:/tt/www/api-tomcat9/webapps/api.war /tt/www/api-tomcat9/webapps/
+  java -cp /lib/*:/targetBookmark/classes  aOPtool.cfgFileViewer    -get  /tt/www/api-tomcat9/webapps/api/WEB-INF/classes/application.yml,/tt/www/admin-tomcat9/webapps/admin/WEB-INF/classes/application.yml    
+  
+*/110 * * * *  java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*     com.kok.sport.utils.tasks.JinxinzhonJincyoTonzhi 7200
+
+* * * * *  java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*   com.kok.sport.utils.tasks.Jinxinzh_OddsLiveNoods
+
+*/9 * * * *  java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*       com.kok.sport.utils.tasks.TeamTmp
+nohup java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*     com.kok.sport.utils.tasks.JinxinzhonJincyoTonzhi 20000 &
+  
+   nohup  java -cp .:/sqlbek/classes:/sqlbek/miniPrjjars/*  aOPtool.sqlBekScrpt > /dbbekout.file 2>&1 &
+   
+      java -cp D:/prj/sport-service/kok-sport-service/target/classes;D:/kok-sport-service-1.0-SNAPSHOT/BOOT-INF/lib/* com.kok.SportApplication
+	  
+	    java -cp /data/depl/target/classes:/data/depl/BOOT-INF/lib/* com.kok.SportApplication
+	   unzip  /data/depl/target.zip
+	  unzip  unzip  /prd/target.zip
+	     nohup  java -cp /data/depl/target/classes:/data/depl/BOOT-INF/lib/* com.kok.SportApplication > SportApplication.log 2>&1 &
+
+java -cp /data/depl/target/classes:/data/depl/BOOT-INF/lib/* com.kok.SportApplication
+		 tail -f /data/depl/SportApplication.log
+		 
+		 netstat -lnp | grep 9601
+		  netstat -lnp | grep 5901
+java -jar /data/kok-sport-service-1.0-SNAPSHOT.jar &
+
+rz sz receiveZip  sendZipfile
+unzip  ./target.zip
+sudo unzip   /target.zip
+sudo unzip   /data/target.zip
+sudo unzip  /home/jardata/kok-sport-service-1.0-SNAPSHOT.jar
+nohup  java -cp /home/jardata/BOOT-INF/classes:/home/jardata/BOOT-INF/lib/* com.kok.SportApplication  &
+
+nohup  java -cp /data/target/classes:/data/depl/BOOT-INF/lib/* com.kok.SportApplication > SportApplication.log 2>&1  &
+
+git clone http://gitlab.stagingvip.net/haitian/sport-service.git
+
+   nohup  java -cp /data/deployer2/sport-service/kok-sport-service/target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/* com.kok.SportApplication  > SportApplication.log 2>&1 &
+D:\prj\sport-service\kok-sport-service\target\classes\cfg
+
+ tail -f /data/deployer2/sport-service/SportApplication.log
+ 
+ws://112.121.163.125:5202
+
+	 netstat -lnp | grep 5202
+	  netstat -lnp | grep 8888
+	tail -f  /data/ws.log
+nohup	  node /data/ws.js  8888 > ws.log 2>&1  &
+node D:\prj\spdjs\ws.js 8888
+https://112.121.163.125:8888
+wss://112.121.163.125:8888
+## open port
+iptables -I INPUT -p tcp --dport 8888 -j ACCEPT
+iptables -I INPUT -p tcp --dport 5202 -j ACCEPT
+iptables -I INPUT -p tcp --dport 5202 -j ACCEPT
+iptables -I INPUT -p tcp --dport 5901 -j ACCEPT
+ 
+
+notd ok blow..
+iptables -A INPUT -p tcp --dport 5202 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 5202 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 5901 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 5901 -j ACCEPT
+
+sudo unzip  /target.zip
+unzip  /target.zip
+tail  /data/ws.log
+
+
+
+* * * * * java -cp  /home/tomati/target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec " T(com.kok.sport.utils.tasks.DelFileBatch).main(""/home/tomat/"")" 1
+
+* * * * *  java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec " T(com.kok.sport.utils.tasks.DelFileBatch).main(null)" 1
+
+nohup java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.tasks.DelFileBatch4kok &
+
+
+/target/classes/com/kok/sport/utils/tasks/
+/target/classes/com/kok/sport/utils/ql/
+#score
+
+
+jinxinzhon_Football_Live_Match_list_refreshScore
+
+
+ T(com.kok.sport.utils.tasks.DelFileBatch).main(null)
+
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec "new com.kok.sport.utils.mockdata.unitRecentlyV2().jinxinzhon_Football_Live_Match_list_refreshScore()" 3
+
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec "T(com.kok.sport.utils.constant.OddsLive).oddsLive" 3
+
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*     com.kok.sport.utils.tasks.JinxinzhonJincyoTonzhi 20000
+
+
+java -cp /data/deployer2/sport-service/kok-sport-service/target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().test__Football_tlive_Pastdays()"
+chmod 777 /data/depl/tlive_past.sh
+foot_match_ex_saiguo where match_time_date='2020-06-03'
+
+ ## TonzhiJinxinzhongList
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec "T(com.kok.sport.utils.mockdata.TonzhiJinxinzhongList).main(null)" 3
+
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec "new com.kok.sport.utils.mockdata.unitRecentlyV2().Jinxinzhon_Score_tliveRealytimeFootballMatchController_Live_Match_detail_live()" 3
+D:\prj\sport-service\kok-sport-service\target\classes\com\kok\sport\integration\impl\SyncFootballLiveMatchdetailliveImp.class
+/target/classes/com/kok/sport/integration/impl/
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec "T(com.kok.sport.utils.mockdata.TonzhiJinxinzhongList).main(null)" 3
+
+##tiemr ff 实例6：每晚的21:30重启smb
+0 14 * * * java -cp  /target/classes:/lib/libjar/guava-23.6-jre.jar:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*:/lib/libjar/*:/a  com.kok.sport.utils.mockdata.WebdriverFirefox
+0 13 * * * java -cp  /target/classes:/lib/libjar/guava-23.6-jre.jar:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*:/lib/libjar/*:/a  com.kok.sport.utils.mockdata.WebdriverFirefox
+0 15 * * * java -cp  /target/classes:/lib/libjar/guava-23.6-jre.jar:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*:/lib/libjar/*:/a  com.kok.sport.utils.mockdata.WebdriverFirefox
+0 16 * * * java -cp  /target/classes:/lib/libjar/guava-23.6-jre.jar:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*:/lib/libjar/*:/a  com.kok.sport.utils.mockdata.WebdriverFirefox
+0 17 * * * java -cp  /target/classes:/lib/libjar/guava-23.6-jre.jar:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*:/lib/libjar/*:/a  com.kok.sport.utils.mockdata.WebdriverFirefox
+
+nohup  java -cp  /target/classes:/lib/libjar/guava-23.6-jre.jar:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*:/lib/libjar/*:/a  com.kok.sport.utils.mockdata.WebdriverFirefox &
+
+*/15 * * * * java -cp  /data/deployer2/sport-service/kok-sport-service/target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().test__Football_score_Pastdays()"
+
+
+*/30 * * * * java -cp  /data/deployer2/sport-service/kok-sport-service/target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().z_test_odds_past8()"
+
+# -- score_today and match list
+*/15 * * * * java -cp  /data/deployer2/sport-service/kok-sport-service/target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().test__Football_score_today()"
+
+
+*/15 * * * * java -cp  /data/deployer2/sport-service/kok-sport-service/target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().z_test_odds_past8_notInOdds()"
+
+
+
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().test__Football_matchStatScoreFlush()"
+
+
+ */20 * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().test__Football_score_today()"
+ 
+ 
+ */5 * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().test__Football_teamFlush()"
+
+ 
+  * * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().test__Football_lostMatchFlush()"
+
+ */5 * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().jinxinzhong_odds_fresh()"
+
+
+  * * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "T(com.kok.sport.utils.db.EventMysqlExt).main(null)"
+ 
+ # socre realtime api
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().matchStatScoreFlush_LiveMatch_live()"
+
+# state realtime
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().jinxinzhon_Football_Live_Match_list_statue()"
+
+# tlive realtime  Football.Live.Match_detail_live
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunner "new com.kok.sport.utils.mockdata.unitRecentlyV2().tliveRealytimeFootballMatchController()"
+
+
+#tlive jincyo tonji  tonji_Live_Match_detail_live
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec "new com.kok.sport.utils.mockdata.unitRecentlyV2().tonji_Live_Match_detail_live()" 9
+
+
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*   com.kok.sport.utils.mockdata.TonzhiJinxinzhongList
+
+
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec "new com.kok.sport.utils.mockdata.unitRecentlyV2().jinxinzhon_Football_Live_Match_list_refreshScore()" 3
+ 
+  
+*/3 * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*   com.kok.sport.utils.mockdata.TeamRankFlush
+/target/classes/com/kok/sport/utils/mockdata/
+com.kok.sport.utils.tasks
+/target/classes/com/kok/sport/utils/tasks/
+  
+*/60 * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*   com.kok.sport.utils.mockdata.SqlCmdExe "set GLOBAL event_scheduler=1"
+
+ java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.mockdata.wssSendTEst
+yum install links  
+lynx  https://live.leisu.com/
+
+*/6 * * * *  java -cp  /target/classes:/lib/libjar/guava-23.6-jre.jar:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*:/lib/libjar/*:/a  com.kok.sport.utils.mockdata.WebdriverFirefox 
+  
+ nohup  java -cp  /target/classes:/lib/libjar/guava-23.6-jre.jar:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*:/lib/libjar/*:/a  com.kok.sport.utils.mockdata.WebdriverFirefox  > WebdriverFirefox.log 2>&1 &
+
+ nohup  java -cp  /target/classes:/lib/libjar/guava-23.6-jre.jar:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*:/lib/libjar/*:/a  com.kok.sport.utils.mockdata.WebdriverFirefox &
+  
+ nohup  java -cp  /target/classes:/lib/libjar/guava-23.6-jre.jar:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*:/lib/libjar/*:/a  com.kok.sport.utils.mockdata.WebdriverFirefox    > WebdriverFirefox.log 2>&1 &
+   
+  */8 * * * *   nohup  java -cp /data/deployer2/sport-service/kok-sport-service/target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/* com.kok.SportApplication  > SportApplication.log 2>&1 &
+  
+  
+  
+    ps -ef | grep java | grep -v grep   | awk '{print $2}' | xargs kill -9
+  ps -ef | grep TonzhiJinxinzhongList | grep -v grep   | awk '{print $2}' | xargs kill -9
+*/70 * * * * ps -ef | grep java | grep -v grep | awk '{print $2}' | xargs kill -9
+
+*/72 * * * * ps ax|grep firefox  | grep -v grep | awk '{print $1}' | xargs kill -9 | java -cp  /target/classes:/lib/libjar/guava-23.6-jre.jar:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*:/lib/libjar/*:/a  com.kok.sport.utils.mockdata.WebdriverFirefox 
+ 
+ps ax|grep vnc  | grep -v grep | awk '{print $1}' | xargs kill -9
+
+
+
+* * * * * /sh/wss.sh
+
+
+# state realtime
+* * * * * java -cp  /prd/target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec "new com.kok.sport.utils.mockdata.unitRecentlyV2().jinxinzhon_Football_Live_Match_list_statue()" 20
+T(com.kok.sport.utils.tasks.OddsLive).oddsLive
+
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec "T(com.kok.sport.utils.mockdata.wssSendTEst).main(null)" 19
+
+nohub java -cp  /target/classes:/data/depl/BOOT-INF/lib/* com.kok.sport.utils.mockdata.wssSendTEst &
+
+
+* * * * * java -cp  /prd/target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec "new com.kok.sport.utils.mockdata.unitRecentlyV2().jinxinzhon_Football_Live_Match_list_refreshScore()" 30
+* * * * * java -cp  /prd/target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.ql.MethodRunnerSec "new com.kok.sport.utils.mockdata.unitRecentlyV2().matchStatScoreFlush_LiveMatch_live()" 7
+
+
+
+* * * * * java -cp  /target/classes:/data/depl/BOOT-INF/lib/*:/data/deployer2/sport-service/*  com.kok.sport.utils.tasks.Buchon_oddsNoOdsToday 600
+
+

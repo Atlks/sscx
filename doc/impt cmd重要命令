@@ -1,0 +1,40 @@
+##-------------设置webhook
+
+webhook地址是  https://game.gq1sx.cc/index.php?s=handle2/index
+
+https://api.telegram.org/bot6326214984:AAHoyB0GjWQ7E5fhdWhWPxl7ZWrlWvAop5g/setWebhook?url=https%3A%2F%2Fgame.gq1sx.cc%2Findex.php%3Fs%3Dhandle2%2Findex
+
+https://api.telegram.org/bot6326214984:AAHoyB0GjWQ7E5fhdWhWPxl7ZWrlWvAop5g/getWebhookInfo
+
+
+
+
+ 主进程
+php  app/main_cmd.php
+
+
+
+# chkbot 进程
+php public/HandleUpdates.php
+
+
+
+设置日志权限
+
+chmod -R 777 /www/wwwroot/game.gq1sx.cc/runtime
+
+
+#异步任务进程  自动上分
+php app/common/timer_starter.php
+
+
+
+
+
+
+日志清理定时器
+
+
+
+
+

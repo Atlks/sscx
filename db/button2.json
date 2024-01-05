@@ -1,0 +1,28 @@
+[
+  [
+    {
+      "text": "查看余额",
+      "callback_data": "query_balance"
+    },
+    {
+      "text": "最近投注",
+      "callback_data": "query_records"
+    }
+  ],
+  [
+    {
+      "text": "查看流水",
+      "callback_data": "query_rebates"
+    },
+    {
+      "text": "联系财务",
+      "url": "https://t.me/wpcw88"
+    }
+  ],
+  [
+    {
+      "text": "?金貝集团·博彩官方频道?",
+      "url": "https://t.me/jbpc28"
+    }
+  ]
+]

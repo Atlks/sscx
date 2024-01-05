@@ -1,0 +1,20 @@
+chkbot
+
+php public/HandleUpdates.php
+
+
+qihao fx
+php cmd/qihaoRztFx.php
+
+
+fx 修复auth
+php cmd/logauth164.php
+
+
+clr 清l除颜色og
+
+node  tool/clrlog.js
+
+
+auto 自动sheofen
+php app/common/async_timer_starter.php

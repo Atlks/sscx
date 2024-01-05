@@ -1,0 +1,75 @@
+ssc dply log
+
+
+game.gq1sx.cc
+
+https://13.229.155.164:30044/site
+
+
+
+
+**************************************set hook
+6326214984:AAHoyB0GjWQ7E5fhdWhWPxl7ZWrlWvAop5g
+
+6326214984:AAHoyB0GjWQ7E5fhdWhWPxl7ZWrlWvAop5g
+
+https://api.telegram.org/bot6326214984:AAHoyB0GjWQ7E5fhdWhWPxl7ZWrlWvAop5g/setWebhook?url=https%3A%2F%2Fgame.gq1sx.cc%2Findex.php%3Fs%3Dhandle2%2Findex
+
+https://api.telegram.org/bot6326214984:AAHoyB0GjWQ7E5fhdWhWPxl7ZWrlWvAop5g/getWebhookInfo
+
+
+webhook地址是  https://game.gq1sx.cc/index.php?s=handle2/index
+
+
+chmod -R 777 /www/wwwroot/game.gq1sx.cc/runtime
+********************************************
+
+https://game.gq1sx.cc/index.php?s=handle/setHookSsc
+
+game.gq1sx.cc/index.php?s=handle/setHookSsc
+
+https://game.gq1sx.cc/index.php?s=handle/setHook2&hookurl=/index.php?s=handle2/index
+https://game.gq1sx.cc/index.php?s=handle/setHook2&hookurl=%2Findex.php%3Fs%3Dhandle2%2Findex
+
+
+https://game.gq1sx.cc/HookInfo
+
+
+https://game.gq1sx.cc/index.php?s=handle2/index
+
+
+https://api.telegram.org/bot6452008892:AAGn01tDUFvGaq9eEp8LuSgFu5lMeHvKnqo/setWebhook?url=https%3A%2F%2Fgame.gq1sx.cc%2Findex.php%3Fs%3Dhandle2%2Findex
+https://api.telegram.org/bot6452008892:AAGn01tDUFvGaq9eEp8LuSgFu5lMeHvKnqo/getWebhookInfo
+
+
+
+{message_id: 3, from: {…}, chat: {…}, date: 1691822269, text: 'aa'}
+chat:
+{id: -915647679, title: 'sscHToline', type: 'group', all_members_are_administrators: true}
+
+https://api.telegram.org/bot6452008892:AAGn01tDUFvGaq9eEp8LuSgFu5lMeHvKnqo/deleteWebhook
+https://api.telegram.org/bot6452008892:AAGn01tDUFvGaq9eEp8LuSgFu5lMeHvKnqo/getWebhookInfo
+WebhookInfo
+
+https://api.telegram.org/bot6452008892:AAGn01tDUFvGaq9eEp8LuSgFu5lMeHvKnqo/setWebhook?url=https%3A%2F%2Fgame.gq1sx.cc%2Findex.php%3Fs%3Dhandle2%2Findex
+
+
+https://api.telegram.org/bot6452008892:AAGn01tDUFvGaq9eEp8LuSgFu5lMeHvKnqo/setWebhook?url=https%3A%2F%2Fgame.gq1sx.cc%2FkeywordHander.php
+https://game.gq1sx.cc/keywordHander.php
+
+
+
+
+
+
+
+ /www/wwwroot/game.gq1sx.cc/vendor/topthink/framework/src/think/log/driver/File.php:126
+
+
+
+
+
+https://api.telegram.org/bot6452008892:AAGn01tDUFvGaq9eEp8LuSgFu5lMeHvKnqo/sendMessage?parse_mode=MarkdownV2&chat_id=-1001966690793&text=%E7%AC%AC17899216%E6%9C%9F%E5%BC%80%E5%A5%96%E7%BB%93%E6%9E%9C%0D%0A5%2B9%2B8%2B8%2B5%3D35%20%E5%A4%A7%E5%8D%95%20%E5%92%8C%20%E5%89%8D%E5%8D%8A%7C%E4%B8%AD%E5%AF%B9%7C%E5%90%8E%E5%AF%B9%E6%9C%AC%E6%9C%9F%E5%8C%BA%E5%9D%97%E5%8F%B7%E7%A0%81%3A17899216%0D%0A%E6%9C%AC%E6%9C%9F%E5%93%88%E5%B8%8C%E5%80%BC%3A%0D%0A0xd54691eb66c0216778a526f001416a170b259f137e614448fb53de9475d988f5%0D%0A
+
+
+

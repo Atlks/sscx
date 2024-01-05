@@ -1,0 +1,11 @@
+
+
+
+ 主进程
+php  C:\modyfing\jbbot/app/main_cmd.php
+
+
+
+接受消息
+
+node.exe C:\modyfing\jbbot\tlgrm\keywoHdlr.js

@@ -1,0 +1,22 @@
+ 主进程
+php  app/main_cmd.php
+
+
+
+# chkbot 进程
+php public/HandleUpdates.php
+
+
+
+设置日志权限
+
+php cmd/logauth.php
+chmod -R 777 /www/wwwroot/game.gq1sx.cc/runtime
+
+
+#异步任务进程  自动上分
+php app/common/timer_starter.php
+
+
+#  autO set wbhk??
+
