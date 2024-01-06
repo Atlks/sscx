@@ -67,8 +67,39 @@ function array_key713(string $string, $v_cell) {
 
   return $v_cell[$string];
 }
+
+function grpby($rows, string $grpbyCol, $funSlkt) {
+  $rets=[];
+  $grpbyColVals=arr_col_uniq($rows,$grpbyCol);
+
+  foreach ($grpbyColVals as $grpbyColVal)
+  {
+  //  var_dump($grpbyColVal);
+    $coll_whereGrpcol=array_where($rows,$grpbyCol,$grpbyColVal);
+    $rets[]= $funSlkt($coll_whereGrpcol,$grpbyColVal);
+  }
+  return $rets;
+
+
+}
+
+function arr_col_uniq($rows, string $grpbyCol) {
+  $colsVal_arr=  array_column($rows,$grpbyCol);
+  $colsVal_arr= array_unique ($colsVal_arr);
+  return $colsVal_arr;
+}
+
+function array_where($rows, $col, $val) {
+  return  array_filterx($rows,function ($row) use($col,$val){
+    if($row[$col]==$val)
+      return true;
+  });
+}
+
+
+
 function array_sum_col($colName,array $a) {
-  $records=  array_column($a, colName);
+  $records=  array_column($a, $colName);
   return array_sum($records);
 }
 

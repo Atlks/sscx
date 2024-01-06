@@ -60,22 +60,28 @@ function addToList_toDuijEchoList($a)
     $rowsTo = $GLOBALS['$rowsTo'];
 
     foreach ($rowsTo as $r) {
-      $uid = $r['UserId'];
-      $uname = $r['UserName'];
-      $betamt = $r['Bet'] / 100;
-      $betContext = $r['BetContent'];
+      try{
+        $uid = $r['UserId'];
+        $uname = $r['UserName'];
+        $betamt = $r['Bet'] / 100;
+        $betContext = $r['BetContent'];
 
 
 
-      $income= calcIncome_forTo($betContext, $GLOBALS['kaij_num'],$betamt);
-      //
-      $txt = "$uname [$uid]  下注金额:$betamt 盈亏: $income \r\n";
-      // var_dump($txt);
-      $a[] = $txt;
+        $income= calcIncome_forTo($betContext, $GLOBALS['kaij_num'],$betamt);
+        //
+        $txt = "$uname [$uid]  下注金额:$betamt 盈亏: $income \r\n";
+        // var_dump($txt);
+        $a[] = $txt;
+      }catch (Throwable $e)
+      {
+        log_errV2($e,__METHOD__);
+      }
+
     }
     return $a;
   }catch (Throwable $e){
-
+    log_errV2($e,__METHOD__);
   }
 
 }

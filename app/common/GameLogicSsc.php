@@ -1194,7 +1194,8 @@ class GameLogicSsc
                 $income = $row['Payout'] / 100 -  $betamt;
                 $uid = $row['UserId'];
                 $uname = $row['UserName'];
-
+               $uname="私聊玩家";
+              $uid=showLastChs($row['UserId'],4);
 
                 $txt = "$uname [$uid]  下注金额:$betamt 盈亏: $income \r\n";
                 var_dump($txt);

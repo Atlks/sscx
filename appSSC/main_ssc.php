@@ -44,11 +44,12 @@ $console = (new \think\App())->console;
 //$console->$catchExceptions=false;
 $console->call("calltpx");
 
- _main();
 
-//_test935();
 
-function _test935() {
+//_test9352156();
+_main();
+
+function _test9352156() {
 
 
   require __DIR__ . '/../vendor/autoload.php';
@@ -62,12 +63,10 @@ function _test935() {
   $console->call("calltpx");
 
   readBetTypesCfg();
-  $rows = $GLOBALS['bet_types'];
-  $row_slkted = array_filterx($rows, function ($row) {
-    if ($row['玩法'] == "前后三玩法豹子")
-      return true;
-  });
-  print_r($row_slkted[0]['Odds']);
+  $bettype_wefa = "前后三玩法豹子";
+
+  $odds = getOddsFrmGlbdt($bettype_wefa);
+  print_r($odds);
 }
 
 
@@ -524,7 +523,7 @@ function kaij_draw_evt() {
  * @throws \TelegramBot\Api\Exception
  * @throws \TelegramBot\Api\InvalidArgumentException
  */
-function SendPicRzt(GameLogicSsc $gmLgcSSc): void {
+function SendPicRzt(  $gmLgcSSc): void {
   try {
     $gmLgcSSc->SendTrendImage(20); // 生成图片
     $cfile = new \CURLFile(app()->getRootPath() . "public/trend.jpg");

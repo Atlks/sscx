@@ -135,8 +135,9 @@ function str_delNum($str) {
   return preg_replace('/[\d]/', '', $str);
 }
 
+//a/大/100  >>  a/大/
 function str_delLastNum($str) {
-  \log23::zdebug(__METHOD__, "func_get_args", func_get_args());
+ // \log23::zdebug(__METHOD__, "func_get_args", func_get_args());
 //    if( class_exists('\think\facade\Log'))
 //    \think\facade\Log::debug(__METHOD__ . json_encode(func_get_args(), JSON_UNESCAPED_UNICODE));
   return preg_replace('/(\d+)$/iu', '', $str);
@@ -146,15 +147,30 @@ function str_delLastNum($str) {
 //var_dump( str_delLastNumX("单100"));
 $adaf = 1;
 function str_delLastNumX($str) {
-  if (class_exists("\log23"))
-    \log23::zdebug(__METHOD__, "func_get_args", func_get_args());
-//    if( class_exists('\think\facade\Log'))
-//    \think\facade\Log::debug(__METHOD__ . json_encode(func_get_args(), JSON_UNESCAPED_UNICODE));
+
 
   if (preg_match('/(\/\d+)$/iu', $str))
     return preg_replace('/(\/\d+)$/iu', '', $str);
   else
     return preg_replace('/(\d+)$/iu', '', $str);
+}
+
+//var_dump(str_delLastNum("a/大/100"));
+//print_r(str_delLastNumV2("a/大/100",""));
+
+
+//  a/大/100  >>  a/大
+function str_delLastNumV2($str,$df) {
+
+try{
+  if (preg_match('/(\/\d+)$/iu', $str))
+    return preg_replace('/(\/\d+)$/iu', '', $str);
+  else
+    return preg_replace('/(\d+)$/iu', '', $str);
+
+}catch(Throwable $e){
+  return  $df;
+}
 }
 
 //function getAmt_frmBetStr($str)

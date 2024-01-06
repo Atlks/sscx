@@ -8,6 +8,17 @@ function file_mov(string $filpath, string $dir_oked): void
     rename($filpath, $dir_oked . $fil_basename);
 }
 
+
+function file_get_contents_Arr(string $f) {
+
+  return file($f);
+}
+
+function file_get_contents_Asjson($f) {
+  $t=file_get_contents($f);
+  $json = json_decode($t, true);
+  return $json;
+}
 function file_put_contentsx($file, $dt, $flg = FILE_APPEND) {
 
 

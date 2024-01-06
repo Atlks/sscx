@@ -2,9 +2,9 @@
 
 
 
- // _test754();
+  //   _test212434();
 
-function _test754() {
+function _test212434() {
 
 
   $txt="大单";
@@ -22,9 +22,27 @@ function _test754() {
   $console->call("calltpx");
 
 
-  $rows=rdmRcds_ssc(5);
+  $rows = rdmRcds_ssc(5);
+
+
+  $rows=[
+    ["betNoAmt"=>"大","Bet"=>1],
+    ["betNoAmt"=>"大","Bet"=>5],
+    ["betNoAmt"=>"小","Bet"=>1]
+  ];
+  //select bettype,cont()，sum(bet)  from xxx grpby bettype
+  $rows = grpby($rows, "betNoAmt",
+    function ($coll, $grpbyColVal) {
+      return ["betNoAmt" => $grpbyColVal,
+        "cnt" => count($coll),
+        "sum" => array_sum_col("Bet", $coll)
+      ];
+    }
+
+  );
   print_r($rows);
 }
+
 
 
 
@@ -38,11 +56,15 @@ function arr_merg_ssc($a, $a_tp_coll) {
   // $a=$a;
   foreach ($a_tp_coll as $k => $v) {
     try {
+    //  var_dump( ($v) );
+   //   var_dump(json_encodex($v) );
       $tmp = [];
       $tmp['betNoAmt'] = $v['betNoAmt'];
       $tmp['Bet'] = $v['Bet'];
-      $tmp['UserName'] = $v['UserName'];
-      $tmp['UserId'] = $v['UserId'];
+      $tmp['UserName'] = '私聊玩家';
+        //$v['UserName'];
+      $tmp['UserId'] = showLastChs($v['UserId'],4);
+      //  、、$v['UserId'];
      // $a = array_merge($a, $tmp);
       array_push($a,$tmp);
     } catch (\Throwable $e) {
@@ -55,7 +77,7 @@ function arr_merg_ssc($a, $a_tp_coll) {
 
 function rdmRcds_ssc($num) {
 
-  $records = rdmRcds($GLOBALS['to_amt'] );
+  $records = rdmRcds(rand($GLOBALS['to_amt_min'] ,$GLOBALS['to_amt_max']));
   for ($i = 0; $i < count($records); $i++) {
     // foreach ($records as $k => &$v) {
     $v =& $records[$i];
@@ -65,14 +87,29 @@ function rdmRcds_ssc($num) {
       $v['betNoAmt'] = explode(" ", $v['BetContent'])[0];
 
       $txt=$v['BetContent'];
-     if(  mb_strstr($txt,"单") )
-       $v['BetContent']="单";
+      $txt=str_replace("极","", $txt);
+      $txt=strtolower($txt);
+      if(startWithArrchar($txt,"abcde"))
+      {
+        //特码球
+        $v['betNoAmt']=str_delLastNum($v['BetContent'] ) ;
+        continue;
+      }
+      if(  mb_strstr($txt,"单") )
+       $v['BetContent']="总和单".$v['Bet']/100;
       if(  mb_strstr($txt,"双") )
-        $v['BetContent']="双";
-      if(  mb_strstr($txt,"和") )
-        $v['BetContent']="和";
+        $v['BetContent']="总和双".$v['Bet']/100;
 
-      $v['betNoAmt']=$v['BetContent'];
+      if(  mb_strstr($txt,"大") )
+        $v['BetContent']="总和大".$v['Bet']/100;
+      if(  mb_strstr($txt,"小") )
+        $v['BetContent']="总和小".$v['Bet']/100;
+
+      if(  mb_strstr($txt,"和") )
+        $v['BetContent']="和".$v['Bet']/100;
+
+
+      $v['betNoAmt']=str_delLastNumV2($v['BetContent'],$v['BetContent']) ;
 
 
     } catch (\Throwable $e) {

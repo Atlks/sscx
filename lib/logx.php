@@ -214,6 +214,45 @@ namespace libspc {
 
 namespace {
 
+  function log_errV3($exception,$prmdt, $hdrName_method_linenum, $logdir = __DIR__ . "/../runtime/", $lev = "err") {
+    try {
+      if (!file_exists($logdir))
+        $logdir = __DIR__ . "/../runtime/";
+
+      $logf = $logdir . date('Y-m-d H') . "_$lev.log";
+      $timestmpt = date('mdHis');
+
+
+
+
+      $logtxt = $timestmpt . "----------------Hdrname:$hdrName_method_linenum ex_cathr---------------------------";
+
+      //   $logtxt = sprintf("%s [%s] %s=>%s", date('mdHis'), $meth, $varname, $varobj);
+
+      file_put_contents($logf, $logtxt . PHP_EOL, FILE_APPEND);
+      //   file_put_contents($logf,   $linenum_magicNum . PHP_EOL, FILE_APPEND);
+      $logtxt = $timestmpt . "errmsg:" . $exception->getMessage();
+      file_put_contents($logf, $logtxt . PHP_EOL, FILE_APPEND);
+      $logtxt = $timestmpt . "ex file_linenum:" . $exception->getFile() . ":" . $exception->getLine();
+      file_put_contents($logf, $logtxt . PHP_EOL, FILE_APPEND);
+
+
+      $logtxt = $timestmpt . "prmdt:" .json_encode($prmdt,JSON_UNESCAPED_UNICODE);
+      file_put_contents($logf, $logtxt . PHP_EOL, FILE_APPEND);
+
+
+
+      $logtxt = $timestmpt . "errtraceStr:" . $exception->getTraceAsString();
+      file_put_contents($logf, $logtxt . PHP_EOL, FILE_APPEND);
+
+    } catch (\Throwable $e) {
+      var_dump($e);
+    }
+
+    // file_put_contents($logdir . date('Y-m-d H') . "_lg142_$hdrName catch.log",  json_encode($GLOBALS['bet_ret_prm']) . PHP_EOL, FILE_APPEND);
+  }
+
+
 
   function log_errV2($exception, $hdrName_method_linenum, $logdir = __DIR__ . "/../runtime/", $lev = "err") {
     try {

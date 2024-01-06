@@ -243,6 +243,53 @@ function format_echo_ex201415($betstr)
 }
 
 
+
+
+/*std fmt   a/1/100 a/大/100
+ *龙100，虎200，和100，
+ * 总和大100
+ * 前三豹子100
+ */
+function format_echoV2($bet_str) {
+
+  $bet_str=strtolower($bet_str);
+  //tmq fmt exho
+  $rx_fmtFun_map=['[abcde12345]\/[0123456789大小单双]\/\d+'=>'\betstr\format_echo_tmqms'];
+
+   //apply fmt map fun invk
+  foreach ($rx_fmtFun_map as $k=>$v) {
+    $p = '/^' . $k . '$/iu';
+    if (preg_match($p, $bet_str)) {
+      return $v ($bet_str);//tmq ms ..show echo peilv
+    }
+    //def ret same txt;
+   // $rzt = $bet_str;
+  }
+
+
+  $oddsMap = ["龙" => 1.98, "虎" => 1.98, "和" => 9.5,
+    "总和大" => 1.98, "总和小" => 1.98, "总和单" => 1.98, "总和双" => 1.98,
+    "前三豹子" => 70, "中三豹子" => 70, "后三豹子" => 70,
+    "前三对子" => 3.2, "中三对子" => 3.2, "后三对子" => 3.2,
+    "前三顺子" => 12, "中三顺子" => 12, "后三顺子" => 12,
+    "前三半顺" => 2.5, "中三半顺" => 2.5, "后三半顺" => 2.5,
+    "前三杂六" => 3.2, "中三杂六" => 3.2, "后三杂六" => 3.2
+  ];
+
+  //str_format_other 总和和值模式 龙虎和和 前后三   目前已经和回显一致了无需定制了。。
+  //return  format_echo_default( $bet_str);
+
+  $rzt_true = str_delNum($bet_str);
+//  if($rzt_true=="和")
+//    $rzt_true="龙虎和";
+  $money = GetAmt_frmBetStr($bet_str);
+  return $rzt_true . " " . $money . " 赔率:" . map_val($oddsMap, $rzt_true);
+
+  //  \betstr\format_echo_($bet_str);
+
+}
+
+
 function format_echo($bet_str)
 {
   global  $logdir;
@@ -1004,12 +1051,19 @@ function format_tmqdxdswf_ad100_ms($str)
 
 function getAmt_frmBetStr($str)
 {
+  try {
     $str = trim($str);
     //   $str = $msg['text'];
     if (preg_match('/(\d+)$/', $str, $match)) {
-        $number = $match[0];
+      $number = $match[0];
     }
     return $number;
+  }catch (\Throwable $e)
+  {
+
+    log_errV3($e,$str,__METHOD__);
+  }
+
 }
 
 // a1.100

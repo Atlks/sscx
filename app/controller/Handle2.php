@@ -105,28 +105,27 @@ die();
       if (!$message)
         return;
 
-            $text = $message['text'];
-            $chat_id = $message['chat']['id'];
-            if ($text === "获取我的群信息") {
-                $reply_text = "我的群 " . $message['chat']['title'] . " id: " . $chat_id;
+      $text = $message['text'];
+      $chat_id = $message['chat']['id'];
+      if ($text === "获取我的群信息") {
+        $reply_text = "我的群 " . $message['chat']['title'] . " id: " . $chat_id;
 
-                // $this->  $bot->sendMessage($chat_id, $reply_text);
-
-
-                $set = Setting::find(1);
-
-                $GLOBALS['BOT_TOKEN'] = $set->s_value;
-                require_once(__DIR__ . "/../../lib/tlgrmV2.php");
-                $r = sendmsg_reply_txt( $reply_text, $GLOBALS['BOT_TOKEN'], $chat_id);
-            }
-
-        }catch (\Exception $e){
-
-        }
+        // $this->  $bot->sendMessage($chat_id, $reply_text);
 
 
+        $set = Setting::find(1);
+
+        $GLOBALS['BOT_TOKEN'] = $set->s_value;
+        require_once(__DIR__ . "/../../lib/tlgrmV2.php");
+        $r = sendmsg_reply_txt($reply_text, $GLOBALS['BOT_TOKEN'], $chat_id);
+      }
+
+    } catch (\Exception $e) {
 
     }
+
+
+  }
     /**
      * 显示资源列表
      *    s=handle/processMessage
@@ -192,6 +191,8 @@ die();
         die();
         return;
       } elseif (isset($update["callback_query"])) {
+
+
         return $this->processCallbackQuery($update["callback_query"]);
       }
     } catch (\Throwable $e) {
@@ -597,8 +598,16 @@ die();
 
     }
 
+  /** prcs btn cmd
+   * @param $callback_query
+   * @return false|\think\response\Json|void
+   * @throws \think\db\exception\DataNotFoundException
+   * @throws \think\db\exception\DbException
+   * @throws \think\db\exception\ModelNotFoundException
+   */
     private function processCallbackQuery($callback_query)
     {
+      log_enterMethV2(__METHOD__,func_get_args(), "btncmd");
         $from = $callback_query['from']['id'];
         $func = $callback_query['data'];
         $data = Test::where('chat_id', $callback_query['id'])
@@ -616,15 +625,34 @@ die();
         $res = "";
         if (!empty($func)) {
             $res = $this->$func($from);
+            logV3(__METHOD__,"res=>".$res,"btncmd");
         }
         if (!empty($res)) {
+        //  ob_end_clean();
+
+          $parameters=[
+            'callback_query_id' => $callback_query['id'],
+            'text' => $res,
+            'show_alert' => true,
+          ];
+
+          $parameters["method"] = "answerCallbackQuery";
+          $payload = json_encode($parameters);
+
+          ob_end_clean();
+          header('Content-Type: application/json');
+          header('aaa: application/json');
+          header('Content-Length:' . strlen($payload) + 0);
+          echo $payload;
+          die();
+          return;
             //$bot = new \TelegramBot\Api\BotApi($this->Bot_Token); 
             //$bot->answerCallbackQuery($callback_query['id'], $res, true);
-            return $this->apiRequestWebhook("answerCallbackQuery", [
-                'callback_query_id' => $callback_query['id'],
-                'text' => $res,
-                'show_alert' => true,
-            ]);
+//            return $this->apiRequestWebhook("answerCallbackQuery", [
+//                'callback_query_id' => $callback_query['id'],
+//                'text' => $res,
+//                'show_alert' => true,
+//            ]);
         }
     }
 

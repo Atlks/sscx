@@ -2,9 +2,32 @@
 
 
 
+
+/**
+ * @param string $bettype_wefa
+ * @return mixed
+ */
+function getOddsFrmGlbdt(string $bettype_wefa) {
+  try{
+    $rows = $GLOBALS['bet_types'];
+    $row_slkted = array_filterx($rows, function ($row) use ($bettype_wefa) {
+
+
+      if ($row['玩法'] == $bettype_wefa)
+        return true;
+    });
+    $odds = $row_slkted[0]['Odds'];
+    return $odds;
+  }catch (\Throwable $e)
+  {
+    return  1.98;
+  }
+
+}
+
  // _test754();
 
-function _test754() {
+function _test205() {
 
 
   $txt="大单";

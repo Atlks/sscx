@@ -367,7 +367,7 @@ class Game2handlrLogic
                 $before_bet[$type['Id']] = $bet['amount'];
 
             if ($before_bet[$type['Id']] > $type['Bet_Max_Total']) {
-                return $text = "超过总最大下注,限额:" . $type['Bet_Max_Total'] / 100;
+               // return $text = "超过总最大下注,限额:" . $type['Bet_Max_Total'] / 100;
             }
 
             $text = $text . $bet_text . "(" . $type['Odds'] . "赔率)\r\n";
