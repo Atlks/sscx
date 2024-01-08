@@ -2,7 +2,7 @@
 
 
 
-  //   _test212434();
+  //  _test212434();
 
 function _test212434() {
 
@@ -25,21 +25,21 @@ function _test212434() {
   $rows = rdmRcds_ssc(5);
 
 
-  $rows=[
-    ["betNoAmt"=>"大","Bet"=>1],
-    ["betNoAmt"=>"大","Bet"=>5],
-    ["betNoAmt"=>"小","Bet"=>1]
-  ];
-  //select bettype,cont()，sum(bet)  from xxx grpby bettype
-  $rows = grpby($rows, "betNoAmt",
-    function ($coll, $grpbyColVal) {
-      return ["betNoAmt" => $grpbyColVal,
-        "cnt" => count($coll),
-        "sum" => array_sum_col("Bet", $coll)
-      ];
-    }
-
-  );
+//  $rows=[
+//    ["betNoAmt"=>"大","Bet"=>1],
+//    ["betNoAmt"=>"大","Bet"=>5],
+//    ["betNoAmt"=>"小","Bet"=>1]
+//  ];
+//  //select bettype,cont()，sum(bet)  from xxx grpby bettype
+//  $rows = grpby($rows, "betNoAmt",
+//    function ($coll, $grpbyColVal) {
+//      return ["betNoAmt" => $grpbyColVal,
+//        "cnt" => count($coll),
+//        "sum" => array_sum_col("Bet", $coll)
+//      ];
+//    }
+//
+//  );
   print_r($rows);
 }
 
@@ -97,15 +97,15 @@ function rdmRcds_ssc($num) {
       }
       if(  mb_strstr($txt,"单") )
        $v['BetContent']="总和单".$v['Bet']/100;
-      if(  mb_strstr($txt,"双") )
+     else if(  mb_strstr($txt,"双") )
         $v['BetContent']="总和双".$v['Bet']/100;
 
-      if(  mb_strstr($txt,"大") )
+     else  if(  mb_strstr($txt,"大") )
         $v['BetContent']="总和大".$v['Bet']/100;
-      if(  mb_strstr($txt,"小") )
+     else  if(  mb_strstr($txt,"小") )
         $v['BetContent']="总和小".$v['Bet']/100;
 
-      if(  mb_strstr($txt,"和") )
+     else  if(  mb_strstr($txt,"和") )
         $v['BetContent']="和".$v['Bet']/100;
 
 

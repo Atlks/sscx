@@ -12,7 +12,7 @@ use think\view\driver\Php;
 use app\common\Logs;
 use function libspc\log_err;
 require_once __DIR__ . "/../libBiz/zautoload.php";
- // _test734825();
+ _test734825();
 
 function _test734825() {
   echo "_test734825";

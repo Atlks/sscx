@@ -125,8 +125,14 @@ function readBetTypesCfg() {
     $rows = \think\Facade\Db::query("select * from bet_types ORDER BY RAND()  ");
     $GLOBALS['bet_types'] = $rows;
   } catch (Throwable $e) {
-
+    log_errV2($e,__METHOD__);
   }
+
+//  $rows_shuzi = \think\Facade\Db::query("select * from setting where name='特码球数字玩法_单球配额' limit 1 ");
+//  $GLOBALS['特码球数字玩法_单球配额']=$rows_shuzi[0]['value'];
+//  $rows_dxds = \think\Facade\Db::query("select * from setting where name='特码球大小单双玩法_单球配额' limit 1 ");
+//  $GLOBALS['特码球大小单双玩法_单球配额']=$rows_dxds[0]['value'];
+
 
 }
 

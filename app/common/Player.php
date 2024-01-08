@@ -69,6 +69,16 @@ class Player
         return $decimal ? $this->blockBlance / 100.00 : $this->blockBlance;
     }
 
+
+  public function getFrmBetRecordWhrUidStatLtrno($lottery_no) {
+    $res = $this->records->where('UserId', $this->id)
+      ->where('Status', 0)
+      ->where('LotteryNo', $lottery_no)
+      ->select();
+    return $res;
+
+  }
+
     public function getBetRecord($lottery_no)
     {
         $res = $this->records->where('UserId', $this->id)

@@ -67,7 +67,42 @@ function array_key713(string $string, $v_cell) {
 
   return $v_cell[$string];
 }
+function grpbyV2($rows,   $grpbyColss, $funSlkt) {
 
+  $rows = array_map(function ($row) use ($grpbyColss) {
+    $row['grpby_colss'] =join_cols($row,$grpbyColss) ;
+    return $row;
+
+  }, $rows);
+
+
+  $rets=[];
+  $grpbyColVals=arr_col_uniq($rows,'grpby_colss');
+
+  foreach ($grpbyColVals as $grpbyColVal)
+  {
+    //  var_dump($grpbyColVal);
+    $coll_whereGrpcol=array_where($rows,'grpby_colss',$grpbyColVal);
+    $rets[]= $funSlkt($coll_whereGrpcol,$grpbyColVal);
+  }
+  return $rets;
+
+
+}
+
+function join_cols($row,$grpbyColss ) {
+
+  $a=[];
+   foreach ($grpbyColss as $c)
+   {
+     $a[]=$row[$c];
+   }
+
+   return join("__",$a);
+  //$row['球'] ."__". $row['玩法']
+}
+
+//only one col
 function grpby($rows, string $grpbyCol, $funSlkt) {
   $rets=[];
   $grpbyColVals=arr_col_uniq($rows,$grpbyCol);
@@ -166,3 +201,17 @@ function array_filterx($arr,$f)
   return $seltedRow;
 }
 
+
+
+
+function array_toStndMode($rows524, Closure $param) {
+
+  $a = [];
+  foreach ($rows524 as $r) {
+    $a[] = $param($r);
+  }
+
+  // $rows524 = array_map($param, $rows524);
+  return $a;
+
+}

@@ -120,6 +120,18 @@ function startsWith($string, $startString) {
   return (substr($string, 0, $len) === $startString);
 }
 
+
+
+function isStrContainArr($BetContent, string $string) {
+  $a=str_splitX($string);
+  foreach ($a as $it)
+  {
+    if( strstr($BetContent,$it))
+      return true;
+  }
+  return false;
+}
+
 //支持中文的splt ,,ori splt only eng
 function str_splitX($str) {
   //support chinese char,,,,  str_split not spt chins char

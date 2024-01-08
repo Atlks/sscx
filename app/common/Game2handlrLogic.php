@@ -18,6 +18,7 @@ use http\Exception\BadConversionException;
 use think\exception\ValidateException;
 use think\log;
 use function betstr\format_echo_ex;
+use function foo\func;
 
 function var_dumpx($o)
 {
@@ -128,7 +129,10 @@ class Game2handlrLogic
         return $text;
     }
 
-    private function playerId()
+
+
+
+  private function playerId()
     {
         if ($this->player)
             return $this->player->getId() . "";
@@ -271,7 +275,7 @@ class Game2handlrLogic
         \think\facade\Log::info("250L");
         \think\facade\Log::info(json_encode($bet_str_arr_clr));
 
-        //convert 
+        //----------------------convert
          require_once __DIR__ . "/lotrySscV2.php";
 
         try{
@@ -289,8 +293,10 @@ class Game2handlrLogic
         $bets = array();
         $text = "";
 
+
+
         // var_dumpx(var_export($bet_str, true));
-        //---------------------下注前检查
+        //-------------下注前检查  foreaCH---------------
         foreach ($bet_str_arr_clr_spltMltSingle as $str) {
 
             $match = false;
@@ -367,7 +373,7 @@ class Game2handlrLogic
                 $before_bet[$type['Id']] = $bet['amount'];
 
             if ($before_bet[$type['Id']] > $type['Bet_Max_Total']) {
-               // return $text = "超过总最大下注,限额:" . $type['Bet_Max_Total'] / 100;
+                 return $text = "超过总最大下注,限额:" . $type['Bet_Max_Total'] / 100;
             }
 
             $text = $text . $bet_text . "(" . $type['Odds'] . "赔率)\r\n";
@@ -380,6 +386,38 @@ class Game2handlrLogic
             $bet['betNoAmt']= str_delLastNum($bet_nums);
             array_push($bets, $bet);
         }
+
+
+        //  //------下注前检查  单球总额--------------
+      $rows_shuzi = \think\Facade\Db::query("select * from setting where name='特码球数字玩法_单球配额' limit 1 ");
+      $tmq_numLmt=$rows_shuzi[0]['value'];
+      $rows_dxds = \think\Facade\Db::query("select * from setting where name='特码球大小单双玩法_单球配额' limit 1 ");
+      $dxdsLimt=$rows_dxds[0]['value'];
+      $GLOBALS['特码球大小单双玩法_单球配额']=$rows_dxds[0]['value'];
+      require_once __DIR__ . "/../../libBiz/zautoload.php";
+      require_once __DIR__ . "/../../libBiz/bet.php";
+      $rows524 = $this->player->getFrmBetRecordWhrUidStatLtrno($this->lottery_no);
+      $rows524 = getSumBetFrmBetlogGrpbyWanfNcyo($rows524,$bet_str_arr_clr_spltMltSingle);
+      // array_where($rows524, "玩法", "特码球大小单双玩法");
+       logV3(__METHOD__,json_encode($rows524,JSON_UNESCAPED_UNICODE),"bet1043");
+      foreach($rows524 as $r)
+      {
+        if (strstr($r['玩法'], "特码球数字玩法")) {
+          if ($r['sum'] > $tmq_numLmt)
+            return "超出单球投注限制" .$tmq_numLmt . ",  " . $r['wefaNcyo'];
+
+        }else if (strstr($r['玩法'], "特码球大小单双玩法")) {
+          if ($r['sum'] >$dxdsLimt)
+            return "超出单球投注限制" . $dxdsLimt . ",  " . $r['wefaNcyo'];
+
+        }
+
+      }
+
+
+
+
+
         // ----------------------bef bet chk finish
 
         \think\facade\Log::info("305L  ");
