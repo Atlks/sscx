@@ -378,10 +378,10 @@ die();
         file_put_contents("kkkk.log", 111, FILE_APPEND);
         //  var_dumpx(111);
 
-        $rows =  \think\Facade\Db::name('bet_types00')->whereRaw("玩法='龙虎和玩法'")->select();
+        $rows =  \think\facade\Db::name('bet_types00')->whereRaw("玩法='龙虎和玩法'")->select();
         // $rows=  \think\Db::query('select * from bet_typeds where 1=1');
         //$rows=  \think\Facade\Db::name('bet_types')->select();
-        $rows =  \think\Facade\Db::name('bet_types')->whereRaw("玩法='龙虎和玩法'")->select();
+        $rows =  \think\facade\Db::name('bet_types')->whereRaw("玩法='龙虎和玩法'")->select();
 
         file_put_contents("351.json", json_encode($rows));
         //  var_dumpx($rows);

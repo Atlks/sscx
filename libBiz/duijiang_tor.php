@@ -56,6 +56,7 @@ function  _test1112() {
  */
 function addToList_toDuijEchoList($a)
 {
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
   try{
     $rowsTo = $GLOBALS['$rowsTo'];
 
@@ -79,6 +80,7 @@ function addToList_toDuijEchoList($a)
       }
 
     }
+    log_vardumpRetval(__METHOD__,$a,$GLOBALS['mainlg']);
     return $a;
   }catch (Throwable $e){
     log_errV2($e,__METHOD__);

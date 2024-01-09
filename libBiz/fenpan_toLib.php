@@ -47,10 +47,10 @@ function _test212434() {
 
 
 
-//
-//require_once __DIR__ . "/../lib/sys1011.php";
-//require_once __DIR__ . "/../lib/logx.php";
-//require_once __DIR__ . "/../lib/dsl.php";
+// 融合托的数据和数据库数据
+//todo
+//  isEmpty	是否为空
+//$a_tp_coll.toArray	转换为数组
 function arr_merg_ssc($a, $a_tp_coll) {
 
   // $a=$a;
@@ -75,9 +75,18 @@ function arr_merg_ssc($a, $a_tp_coll) {
   return $a;
 }
 
+/**随机获取托数据
+ * @param $num
+ * @return mixed
+ */
 function rdmRcds_ssc($num) {
 
-  $records = rdmRcds(rand($GLOBALS['to_amt_min'] ,$GLOBALS['to_amt_max']));
+  $rdmNmbr = rand($GLOBALS['to_amt_min'], $GLOBALS['to_amt_max']);
+// $records = rdmRcds(/$rdmNmbr);
+
+  $records = \think\facade\Db::query("select * from bet_record_to ORDER BY RAND() limit $rdmNmbr");
+
+
   for ($i = 0; $i < count($records); $i++) {
     // foreach ($records as $k => &$v) {
     $v =& $records[$i];
@@ -132,10 +141,9 @@ function rdmRcds_ssc($num) {
 
 
 
-function rdmRcds($num) {
-
-  $rows = \think\Facade\Db::query("select * from bet_record_to ORDER BY RAND() limit $num");
-
-  return $rows;
-
-}
+//function rdmRcds($num) {
+//
+//
+//  return $rows;
+//
+//}

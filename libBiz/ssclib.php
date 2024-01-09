@@ -45,7 +45,7 @@ function _test205() {
   $console->call("calltpx");
 
 
-  $rows = \think\Facade\Db::query("select * from bet_types ORDER BY RAND()  ");
+  $rows = \think\facade\Db::query("select * from bet_types ORDER BY RAND()  ");
 
 //  $rows=rdmRcds_ssc(5);
   print_r($rows);

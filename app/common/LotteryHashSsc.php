@@ -71,6 +71,8 @@ class LotteryHashSsc extends Lottery
     // 获取当前彩期
     public function get_current_noV3()
     {
+      $logf_flag = "mainlg";
+      log_enterMethV2(__METHOD__,func_get_args(), $logf_flag);
         \think\facade\Log::notice(__METHOD__ . json_encode(func_get_args()));
         //if this data ,ret true
         //  if (!$this->data) return false;
@@ -79,8 +81,12 @@ class LotteryHashSsc extends Lottery
             try {
 
 
-                $txt=file_get_contents("https://api.kzx71.vip/tron/next");
-                $jsonobj=json_decode(  $txt,true);
+              $url = "https://api.kzx71.vip/tron/next";
+              logV3(__METHOD__,$url, $logf_flag);
+              $txt=file_get_contents($url);
+              log_Vardump(__METHOD__,"file_get_contents_ret",$txt, $logf_flag);
+
+              $jsonobj=json_decode(  $txt,true);
                 $qihao =  $jsonobj['data']['issue'];
                 $GLOBALS['opentime']= $jsonobj['data']['openTime'];
                 $GLOBALS['qihao']= $qihao;
@@ -114,6 +120,7 @@ class LotteryHashSsc extends Lottery
                   'hash_no' =>  $GLOBALS['nextBlknum'],
                     'closetime'=> $jsonobj['data']['closeTime']
                 ];
+                log_vardumpRetval(__METHOD__,$this->data,$logf_flag);
                 return $this->data;
                 //die();
                 //return   $qihao;
@@ -195,6 +202,7 @@ class LotteryHashSsc extends Lottery
     // 开奖  blkModeApi
     public function drawV3($blkNum)
     {
+      log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
         \think\facade\Log::notice(__METHOD__ . json_encode(func_get_args()));
         var_dump($blkNum);
         $log_txt = __METHOD__ . json_encode(func_get_args());
@@ -207,11 +215,16 @@ class LotteryHashSsc extends Lottery
                // $url = "https://api.etherscan.io/api?module=proxy&action=eth_getBlockByNumber&tag=0x$HexNum&boolean=false&apikey=$apikey";
 
               $url="https://api.kzx71.vip/tron/result?issue=".$blkNum;
+              logV3(__METHOD__,$url,$GLOBALS['mainlg']);
               $lineNumStr = __FILE__ . ":" . __LINE__ . " f:" . __FUNCTION__ . " m:" . __METHOD__ . "  ";
                 \think\facade\Log::info($lineNumStr);
                 \think\facade\Log::info($url);
                 $t = $this->http_helper->http_request($url);
-                \think\facade\Log::info($t);
+
+              logV3(__METHOD__,"urlret=>".$t,$GLOBALS['mainlg']);
+
+
+              \think\facade\Log::info($t);
                 \think\facade\Log::debug($t);
                 \think\facade\Log::notice($t);
                 $json = json_decode($t, true);
@@ -226,7 +239,9 @@ class LotteryHashSsc extends Lottery
                     continue;
                 }
 
-                return  $json['data']['hash'];
+              $hash = $json['data']['hash'];
+                log_vardumpRetval(__METHOD__,$hash,$GLOBALS['mainlg']);
+              return $hash;
             } catch (\Throwable $e) {
                 $exception = $e;
                 $lineNumStr = "  " . __FILE__ . ":" . __LINE__ . " f:" . __FUNCTION__ . " m:" . __METHOD__ . "  ";

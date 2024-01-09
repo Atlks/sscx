@@ -1019,6 +1019,8 @@ class GameLogicSsc
     //  对讲计算
     public function DrawLotteryV2($hash)
     {
+      log_enterMethV2(__METHOD__,func_get_args(), 'mainlg' );
+      logV3(__METHOD__,"对讲返奖计算",'mainlg');
         \think\facade\Log::notice(__METHOD__ . json_encode(func_get_args()));
         $log_txt = __METHOD__ . json_encode(func_get_args());
 
@@ -1166,6 +1168,7 @@ class GameLogicSsc
 
         //end   if (preg_match_all
         $this->game_state = 'next';
+        log_vardumpRetval(__METHOD__,$text,$GLOBALS['mainlg']);
         return  $text;
     }
 
@@ -1173,6 +1176,7 @@ class GameLogicSsc
     // show jonjyo list 中奖名单
     public function calcIncomeGrpby($lotteryno)
     {
+      log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
         try {
             $a = [];
             //  //    select sum(bet),sum(payout),sum(bet)-sum(payout) as income
@@ -1208,8 +1212,9 @@ class GameLogicSsc
           $a= addToList_toDuijEchoList($a);
 
 
-
-            return join("", $a);
+          $join = join("", $a);
+          log_vardumpRetval(__METHOD__,$join,$GLOBALS['mainlg']);
+          return $join;
         } catch (\Throwable $exception) {
           return $this->logE($exception);
 

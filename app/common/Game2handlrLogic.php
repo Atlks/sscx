@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace app\common;
 
+use app\common\Logs;
 use app\common\Player;
 use app\model\User;
 use app\model\Config;
 use app\model\BetTypes;
 use app\model\BotWords;
-use app\common\Logs;
+
 use app\model\Setting;
 use app\common\helper;
 use app\model\GameString;
@@ -240,7 +241,11 @@ class Game2handlrLogic
     //  bet v2222
     public function regex_betV2($content)
     {
-        //   $GLOBALS['loggerFun']= \think\facade\Log::betnotice;
+      $GLOBALS['btlg']="btlg";
+      log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['btlg']);
+
+
+      //   $GLOBALS['loggerFun']= \think\facade\Log::betnotice;
         \think\facade\Log::betnotice(__METHOD__ . json_encode(func_get_args()));
         // var_dump(__METHOD__. json_encode( func_get_args()));
         $lineNumStr = __METHOD__ . json_encode(func_get_args()) . __FILE__ . ":" . __LINE__ . " f:" . __FUNCTION__ . " m:" . __METHOD__ . "  ";
@@ -289,6 +294,8 @@ class Game2handlrLogic
         }
       log_info_toReqchain(__LINE__.__METHOD__,"bet_str_arr_clr_spltMltSingle",$bet_str_arr_clr_spltMltSingle);
 
+
+        //  $this->lottery_no = Logs::get_last_lottery_log()['No'];
    $before_bet = $this->player->getBetRecord($this->lottery_no);
         $bets = array();
         $text = "";
@@ -296,6 +303,7 @@ class Game2handlrLogic
 
 
         // var_dumpx(var_export($bet_str, true));
+        logV3(__METHOD__,"foreach bet_str_arr",'btlg');
         //-------------下注前检查  foreaCH---------------
         foreach ($bet_str_arr_clr_spltMltSingle as $str) {
 
@@ -388,27 +396,24 @@ class Game2handlrLogic
         }
 
 
-        //  //------下注前检查  单球总额--------------
-      $rows_shuzi = \think\Facade\Db::query("select * from setting where name='特码球数字玩法_单球配额' limit 1 ");
-      $tmq_numLmt=$rows_shuzi[0]['value'];
-      $rows_dxds = \think\Facade\Db::query("select * from setting where name='特码球大小单双玩法_单球配额' limit 1 ");
-      $dxdsLimt=$rows_dxds[0]['value'];
-      $GLOBALS['特码球大小单双玩法_单球配额']=$rows_dxds[0]['value'];
-      require_once __DIR__ . "/../../libBiz/zautoload.php";
-      require_once __DIR__ . "/../../libBiz/bet.php";
-      $rows524 = $this->player->getFrmBetRecordWhrUidStatLtrno($this->lottery_no);
-      $rows524 = getSumBetFrmBetlogGrpbyWanfNcyo($rows524,$bet_str_arr_clr_spltMltSingle);
+      logV3(__METHOD__,"END foreach bet_str_arr",'btlg');
+
+
+      //  //------下注前检查  单球总额  a球大  a球小为一注检查单位--------------
+      // todo need extr
+      require_once __DIR__."/../../libBiz/bet.php";
+      list($tmq_numLmt, $dxdsLimt, $rows524) =  getSumbetFrm_BtlgTblNinptRws_GrpbyAqiuDa_prmMlt( $this->player,$this->lottery_no,$bet_str_arr_clr_spltMltSingle);
       // array_where($rows524, "玩法", "特码球大小单双玩法");
        logV3(__METHOD__,json_encode($rows524,JSON_UNESCAPED_UNICODE),"bet1043");
       foreach($rows524 as $r)
       {
         if (strstr($r['玩法'], "特码球数字玩法")) {
           if ($r['sum'] > $tmq_numLmt)
-            return "超出单球投注限制" .$tmq_numLmt . ",  " . $r['wefaNcyo'];
+            return "超出单球投注限制" .$tmq_numLmt . ",  " . $r['球-号码'];
 
         }else if (strstr($r['玩法'], "特码球大小单双玩法")) {
           if ($r['sum'] >$dxdsLimt)
-            return "超出单球投注限制" . $dxdsLimt . ",  " . $r['wefaNcyo'];
+            return "超出单球投注限制" . $dxdsLimt . ",  " . $r['球-号码'];
 
         }
 
@@ -419,10 +424,14 @@ class Game2handlrLogic
 
 
         // ----------------------bef bet chk finish
-
+      logV3(__METHOD__,"end getSumbetFrm_BtlgTblNinptRws_GrpbyAqiuDa_prmMlt","btlg");
         \think\facade\Log::info("305L  ");
         log_info_toReqchain(__LINE__.__METHOD__,"ched bets arr",$bets);
-        if ($total_bet_amount > $this->player->getBalance(false)) {
+      $balance = $this->player->getBalance(false);
+      if ($total_bet_amount > $balance) {
+           //if false not div/100
+          log_Vardump(__METHOD__,"total_bet_amount",$total_bet_amount,"btlg");
+          log_Vardump(__METHOD__,"balance",$balance,"btlg");
             return $this->getWords('下注余额不足');
         }
 

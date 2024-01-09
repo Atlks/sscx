@@ -35,6 +35,7 @@ $rzt312 = 99;
 
 function convert_kaij_echo_ex($result_text)
 {
+  log_enterMethV2(__METHOD__,func_get_args(), 'mainlg' );
     try {
         return  kaij_echo($result_text);
     } catch (\Throwable $exception) {

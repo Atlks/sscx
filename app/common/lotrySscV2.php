@@ -527,7 +527,7 @@ function getKaijNumFromBlkhash_cye5vi($blkHash)
 
 function getKaijNumFromBlkhash($blkHash)
 {
-
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
     \think\facade\Log::notice(__METHOD__ . json_encode(func_get_args()));
     $blkHash = trim($blkHash);
     $blkHash = substr($blkHash, 2);
@@ -535,6 +535,7 @@ function getKaijNumFromBlkhash($blkHash)
     $str = preg_replace('/[a-z]/i', '', $blkHash);
     var_dump(($str));
     $str = substr($str, strlen($str) - 5);
+    log_vardumpRetval(__METHOD__,$str,$GLOBALS['mainlg']);
     return $str;
 }
 

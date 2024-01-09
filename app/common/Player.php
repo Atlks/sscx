@@ -81,7 +81,9 @@ class Player
 
     public function getBetRecord($lottery_no)
     {
-        $res = $this->records->where('UserId', $this->id)
+      log_enterMethV2(__METHOD__,func_get_args(),'btlg');
+
+      $res = $this->records->where('UserId', $this->id)
             ->where('Status', 0)
             ->where('LotteryNo', $lottery_no)
             ->select();

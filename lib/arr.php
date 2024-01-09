@@ -67,7 +67,53 @@ function array_key713(string $string, $v_cell) {
 
   return $v_cell[$string];
 }
+
+//print_r(testGrpby());;
+function _testGrpby() {
+
+  $rows524 = [["球" => 'a', "玩法" => "数字玩法", 'Bet' => 2],
+    ["球" => 'b', "玩法" => "大小单双", 'Bet' => 3]];
+
+  $rows524 = grpbyV3($rows524, ['球', '玩法'], function ($coll, $grpbyColVal) {
+    return [
+     // $grpbyColName => $grpbyColVal,
+      '玩法' => $coll[0]['玩法'],
+      '球' => $coll[0]['球'],
+      "sum" => array_sum_col("Bet", $coll)
+    ];
+  });
+
+  return $rows524;
+
+}
+
+
+function grpbyV3($rows,   $grpbyColss, $funSlkt) {
+
+  $grpbyColName='cmbCols_'.join("_",$grpbyColss);
+  $rows = array_map(function ($row) use ($grpbyColss,$grpbyColName) {
+    $row[$grpbyColName] =join_cols($row,$grpbyColss) ;
+    return $row;
+
+  }, $rows);
+
+
+  $rets=[];
+  $grpbyColVals=arr_col_uniq($rows,$grpbyColName);
+
+  foreach ($grpbyColVals as $grpbyColVal)
+  {
+    //  var_dump($grpbyColVal);
+    $coll_whereGrpcol=array_where($rows,$grpbyColName,$grpbyColVal);
+    $rets[]= $funSlkt($coll_whereGrpcol,$grpbyColVal);
+  }
+  return $rets;
+
+
+}
+
 function grpbyV2($rows,   $grpbyColss, $funSlkt) {
+
 
   $rows = array_map(function ($row) use ($grpbyColss) {
     $row['grpby_colss'] =join_cols($row,$grpbyColss) ;
@@ -169,6 +215,33 @@ function in_array_rxChk(string $txt, array $arr_fmt) {
 
 function startwithV1252($str,$pattern) {
   return (strpos($str,$pattern) === 0 )? true:false ;
+}
+
+function  arr_select($f,$rows) {
+  return array_map($f,$rows);
+
+}
+
+function  arr_where($arr,$f) {
+  return array_filter_where($arr,$f);
+
+}
+
+function array_filter_where($arr,$f)
+{
+
+  $seltedRow = [];
+
+
+
+  foreach ($arr as $k => $row) {
+    if ($f($row))
+    {
+      $seltedRow[]=$row;
+
+    }
+  }
+  return $seltedRow;
 }
 
 

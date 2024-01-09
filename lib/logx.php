@@ -214,7 +214,9 @@ namespace libspc {
 
 namespace {
 
-  function log_errV3($exception,$prmdt, $hdrName_method_linenum, $logdir = __DIR__ . "/../runtime/", $lev = "err") {
+  use function libspc\log_err;
+
+  function log_errV3($exception, $prmdt, $hdrName_method_linenum, $logdir = __DIR__ . "/../runtime/", $lev = "err") {
     try {
       if (!file_exists($logdir))
         $logdir = __DIR__ . "/../runtime/";
@@ -452,6 +454,8 @@ namespace {
 
   }
 
+
+  //dep bcs ivnk too dep
   function log_enterMeth(string $meth, $args, $logf_flag = "info") {
 
     if ($logf_flag != "info")
@@ -534,6 +538,57 @@ namespace {
     }
 
   }
+
+
+
+  function log_vardumpRetval($method_linenum,$varobj,$filFrg = "info")
+  {
+    try {
+      if (is_object($varobj) && get_class($varobj) == "Exception") {
+        log_err($varobj, $method_linenum, $filFrg);
+        return;
+      }
+      if (is_object($varobj) || is_array($varobj))
+        $varobj = json_encode($varobj, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+      if (is_bool($varobj))
+        $varobj = $varobj ? "TRUE" : "FALSE";
+
+      if (is_null($varobj))
+        $varobj = "@@@null";
+      $logf = __DIR__ . "/../runtime/" . date('Y-m-d') . "_$filFrg.log";
+      $logtxt = sprintf("%s <<<<<ENDFUN [%s] <<<ret:%s", date('mdHis'), $method_linenum, $varobj);
+      file_put_contents($logf, $logtxt . PHP_EOL. PHP_EOL. PHP_EOL, FILE_APPEND);
+
+
+    } catch (\Throwable $e) {
+      var_dump($e);
+    }
+
+  }
+  function log_Vardump($method_linenum, $varname, $varobj, $filFrg = "info") {//log_err
+
+    try {
+      if (is_object($varobj) && get_class($varobj) == "Exception") {
+        log_err($varobj, $method_linenum, $filFrg);
+        return;
+      }
+      if (is_object($varobj) || is_array($varobj))
+        $varobj = json_encode($varobj, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+      if (is_bool($varobj))
+        $varobj = $varobj ? "TRUE" : "FALSE";
+
+      if (is_null($varobj))
+        $varobj = "@@@null";
+      $logf = __DIR__ . "/../runtime/" . date('Y-m-d') . "_$filFrg.log";
+      $logtxt = sprintf("%s [%s] %s=>%s", date('mdHis'), $method_linenum, $varname, $varobj);
+      file_put_contents($logf, $logtxt . PHP_EOL, FILE_APPEND);
+
+
+    } catch (\Throwable $e) {
+      var_dump($e);
+    }
+  }
+
   function logV3($method_linenum, $msg, $filFrg = "info") {//log_err
 
     try {
