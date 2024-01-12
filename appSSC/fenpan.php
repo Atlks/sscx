@@ -12,7 +12,7 @@ use think\view\driver\Php;
 use app\common\Logs;
 use function libspc\log_err;
 require_once __DIR__ . "/../libBiz/zautoload.php";
- _test734825();
+// _test734825();
 
 function _test734825() {
   echo "_test734825";
@@ -33,6 +33,7 @@ function _test734825() {
 
 
 function fenpan_stop_event() {
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
   dsl__execSql_tp(function () {
     $set = Setting::find(3);
     $set->value = 1;
@@ -106,19 +107,29 @@ function fenpan_stop_event() {
   $set = Setting::find(3);
   $set->value = 1;
   $set->save();
-  \think\facade\Db::close();
+ // \think\facade\Db::close();
+  logV3(__METHOD__,"updt setting set gamerstt=1",$GLOBALS['mainlg']);
+   // log_vardumpRetval(__METHOD__,"",$GLOBALS['mainlg']);
+
+  log_vardumpRetval(__METHOD__,"",$GLOBALS['mainlg']);
+
 }
 
+
+/**调用本期下注玩家
+ * @return void
+ */
 function fenpan_benqiBetPlyr() {
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
 
    require_once __DIR__."/../app/common/betstr.php";
   //-----------------本期下注玩家
       $lottery_no=$GLOBALS['qihao'];
   require_once __DIR__ . "/../libBiz/fenpan_toLib.php";
   try {
+    //获取随机拖数据并融合为arr
     $records_db = \app\common\Logs::getBetRecordByLotteryNoGrpbyU($lottery_no);
     $rows=rdmRcds_ssc(5);
-
     $GLOBALS['$rowsTo']=$rows;
     $records= arr_merg_ssc($rows,$records_db);
 
@@ -165,4 +176,7 @@ function fenpan_benqiBetPlyr() {
     \log_errV2($e,__METHOD__);
 
   }
+
+  log_vardumpRetval(__METHOD__,"",$GLOBALS['mainlg']);
+
 }

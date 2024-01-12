@@ -3,7 +3,7 @@
 
 // php   app/common/timer.php
 
-
+//添加异步task
 function swoole_timer_afterx($fun, $args, $delaytime_sec)
 {
   try{
@@ -28,6 +28,7 @@ function swoole_timer_afterx($fun, $args, $delaytime_sec)
 
 }
 
+//构建异步task
 function asyn_build_async_task($fun, mixed $arg1214, int $exeTime)
 {
     log23::Timerinfo(__LINE__.__METHOD__, "args", json_encode(func_get_args(), JSON_UNESCAPED_UNICODE));
@@ -37,7 +38,7 @@ function asyn_build_async_task($fun, mixed $arg1214, int $exeTime)
     return $nextFuncIvkTxt;
 }
 
-
+//任务执行
 function async_timer_start()
 {
 
@@ -77,7 +78,7 @@ function async_timer_start()
 
 }
 
-
+//任务执行core  单个任务
 function asyn_item_task_process($fil_basename)
 {
     $allIncFile = get_included_files();

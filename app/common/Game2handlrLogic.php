@@ -440,12 +440,20 @@ class Game2handlrLogic
         $this->action = true;
         $text = $text . "\r\n";
         //-------------------------------------开始下注--------
+
+
+        require_once  __DIR__."/../../libBiz/ssclib.php";
+      $GLOBALS['mainlg']='mainlg';
+      readBetTypesCfg744();
+
         $bet_lst_echo_arr = [];
 
 
         require_once __DIR__."/betstr.php";
         $bet_amt_total_arr=[];
         foreach ($bets as $key => $value) {
+
+
            // str_
           $formatEchoBet = \betstr\format_echo_ex201415($value['text']);
           log_info_toReqchain(__LINE__.__METHOD__,"formatEchoBet",$formatEchoBet);
@@ -464,12 +472,12 @@ class Game2handlrLogic
         };
 
 
-        $current_bets = $this->player->getBetRecord($this->lottery_no);
+    //    $current_bets = $this->player->getBetRecord($this->lottery_no);
         $text = "";
-        foreach ($current_bets as $k => $v) {
-            $res = BetTypes::where('Id', $k)->find();
-            $text .= $res->Display . "-" . $v / 100 . "(" . $res->Odds . "赔率)\r\n";
-        }
+//        foreach ($current_bets as $k => $v) {
+//            $res = BetTypes::where('Id', $k)->find();
+//            $text .= $res->Display . "-" . $v / 100 . "(" . $res->Odds . "赔率)\r\n";
+//        }
 
 
         //----------------------------- 回显

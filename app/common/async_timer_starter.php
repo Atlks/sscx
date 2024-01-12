@@ -24,7 +24,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 require_once __DIR__."/../../lib/iniAutoload.php";
 
-
+//异步任务执行 damon
 while (true) {
     try {
 

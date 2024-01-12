@@ -73,6 +73,8 @@ function _test9352156() {
 
 
 function _main() {
+  $GLOBALS['mainlg']="mainlg";
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
 
   readBetTypesCfg();
 
@@ -118,19 +120,28 @@ function _main() {
   sleep($delay_to_statrt_Kaijyo_sec);
   //---------------------开奖流程
   kaij_draw_evt();
+  log_vardumpRetval(__METHOD__,"", $GLOBALS['mainlg']);
 }
 
 function readBetTypesCfg() {
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
+
   try {
-    $rows = \think\Facade\Db::query("select * from bet_types ORDER BY RAND()  ");
-    $GLOBALS['bet_types'] = $rows;
+    $sql = "select * from bet_types ORDER BY RAND()  ";
+   logV3(__METHOD__,$sql,"mainlg");
+    $rows = \think\facade\Db::query($sql);
+    foreach ($rows as $r)
+    {
+
+    }
+    $GLOBALS['bet_types734'] = $rows;
   } catch (Throwable $e) {
     log_errV2($e,__METHOD__);
   }
 
-//  $rows_shuzi = \think\Facade\Db::query("select * from setting where name='特码球数字玩法_单球配额' limit 1 ");
+//  $rows_shuzi = \think\facade\Db::query("select * from setting where name='特码球数字玩法_单球配额' limit 1 ");
 //  $GLOBALS['特码球数字玩法_单球配额']=$rows_shuzi[0]['value'];
-//  $rows_dxds = \think\Facade\Db::query("select * from setting where name='特码球大小单双玩法_单球配额' limit 1 ");
+//  $rows_dxds = \think\facade\Db::query("select * from setting where name='特码球大小单双玩法_单球配额' limit 1 ");
 //  $GLOBALS['特码球大小单双玩法_单球配额']=$rows_dxds[0]['value'];
 
 
@@ -138,10 +149,14 @@ function readBetTypesCfg() {
 
 
 function startBetEvt() {
+
+ // $logf_flag = "mainlg";
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
   //// 更新状态开放投注  must close here lst for open b cs secury
   $set = Setting::find(3);
   $set->value = 1;   //1 just close bet
   $set->save();
+  logV3(__METHOD__,"updt Setting set 游戏状态=1","mainlg");
   \think\facade\Log::notice(__METHOD__ . json_encode(func_get_args()));
   //-------------------- start bet
 
@@ -168,19 +183,22 @@ function startBetEvt() {
 //  $log = \app\common\Logs::addLotteryLog($today, $lottery_no, $GLOBALS['kaijBlknum']);
 
   try {
-    $log = LotteryLog::create(array(
+    $jiangqiDt = array(
 
       'No' => $lottery_no,
       'Hash' => $GLOBALS['kaijBlknum'],
-    ));
+    );
+    $log = LotteryLog::create($jiangqiDt);
 
-
+  logV3(__METHOD__,"insert LotteryLog".json_encodex($jiangqiDt),$GLOBALS['mainlg']);
 //   var_dump($log);
     $lineNumStr = __FILE__ . ":" . __LINE__ . " f:" . __FUNCTION__ . " m:" . __METHOD__ . "  ";
     //   \think\facade\Log::info($lineNumStr);
     \think\facade\Log::info("add new lotry qihao " . $lineNumStr);
     \think\facade\Log::info(json_encode($log));
   } catch (\Throwable $e) {
+
+    log_errV3($e,$jiangqiDt,__METHOD__,null,"tt319.log",$GLOBALS['mainlg']);
 
   }
 
@@ -221,7 +239,7 @@ function startBetEvt() {
   \think\facade\Log::info($text);
   //sendmessageBotNConsole($text);
 
-
+  logV3(__METHOD__, $text, $GLOBALS['mainlg']);
   if (file_exists("c:/sendBotMsgDisable")) {
     logV3(__METHOD__, "\n\n", "mainCycle");
     logV3(__METHOD__, $text, "mainCycle");
@@ -237,7 +255,9 @@ function startBetEvt() {
   $set = Setting::find(3);
   $set->value = 0;
   $set->save();
-  \think\facade\Db::close();
+  logV3(__METHOD__, "updt Setting set 游戏状态=0", $GLOBALS['mainlg']);
+  log_vardumpRetval(__METHOD__,"",$GLOBALS['mainlg']);
+  // \think\facade\Db::close();
 }
 
 
@@ -402,10 +422,11 @@ function startBetEvtDep() {
   $set = Setting::find(3);
   $set->value = 0;
   $set->save();
-  \think\facade\Db::close();
+ // \think\facade\Db::close();
 }
 
 function fenpan_wanrning_event() {
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
 
   $waring_time = Setting::find(7)->value; //30*1000;
   $waring_time_sec = $waring_time / 1000;
@@ -433,11 +454,14 @@ function fenpan_wanrning_event() {
     bot_sendMsgTxtMode($text, $GLOBALS['BOT_TOKEN'], $GLOBALS['chat_id']);
     //  $bot->sendmessage($chat_id, $text);
   }
+  log_vardumpRetval(__METHOD__,"",$GLOBALS['mainlg']);
+
 }
 
 
 //require  __DIR__ . "/../../lib/iniAutoload.php";
 function kaij_draw_evt() {
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
   $draw_str = "console:" . $GLOBALS['qihao'] . "期开奖中..console";
   //  sendmessage841($draw_str);
   \think\facade\Log::notice(__METHOD__ . json_encode(func_get_args()));
@@ -517,10 +541,12 @@ function kaij_draw_evt() {
     SendPicRzt($gmLgcSSc);
   }
 
-  \think\facade\Db::close();
+ // \think\facade\Db::close();
   $show_str = "console:" . $lottery_no . "期开奖完毕==开始下注 \r\n";
   //  sendmessage841($show_str);
   // $gl->DrawLottery();
+  log_vardumpRetval(__METHOD__,"",$GLOBALS['mainlg']);
+
 }
 
 /**
@@ -530,6 +556,7 @@ function kaij_draw_evt() {
  * @throws \TelegramBot\Api\InvalidArgumentException
  */
 function SendPicRzt(  $gmLgcSSc): void {
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
   try {
     $gmLgcSSc->SendTrendImage(20); // 生成图片
     $cfile = new \CURLFile(app()->getRootPath() . "public/trend.jpg");
@@ -542,6 +569,8 @@ function SendPicRzt(  $gmLgcSSc): void {
 }
 
 function sendMsgEx(mixed $chat_id, string $text, $rplyMkp = null) {
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
+
   try {
     $bot = new \TelegramBot\Api\BotApi($GLOBALS['BOT_TOKEN']);
     $bot->sendmessage($GLOBALS['chat_id'], $text, null, false, null, null, $rplyMkp);
@@ -564,6 +593,7 @@ function sendMsgEx(mixed $chat_id, string $text, $rplyMkp = null) {
 
 
 function sendMsgEx706(mixed $chat_id, string $text, $rplyMkp = null) {
+  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
   try {
     require_once __DIR__ . "/../lib/logx.php";
     log_enterMethV2(__METHOD__, func_get_args(), "sendMsgEx706");

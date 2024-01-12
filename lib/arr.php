@@ -92,7 +92,7 @@ function grpbyV3($rows,   $grpbyColss, $funSlkt) {
 
   $grpbyColName='cmbCols_'.join("_",$grpbyColss);
   $rows = array_map(function ($row) use ($grpbyColss,$grpbyColName) {
-    $row[$grpbyColName] =join_cols($row,$grpbyColss) ;
+    $row[$grpbyColName] =join_cols_val($row,$grpbyColss) ;
     return $row;
 
   }, $rows);
@@ -116,7 +116,7 @@ function grpbyV2($rows,   $grpbyColss, $funSlkt) {
 
 
   $rows = array_map(function ($row) use ($grpbyColss) {
-    $row['grpby_colss'] =join_cols($row,$grpbyColss) ;
+    $row['grpby_colss'] =join_cols_val($row,$grpbyColss) ;
     return $row;
 
   }, $rows);
@@ -136,7 +136,7 @@ function grpbyV2($rows,   $grpbyColss, $funSlkt) {
 
 }
 
-function join_cols($row,$grpbyColss ) {
+function join_cols_val($row, $grpbyColss ) {
 
   $a=[];
    foreach ($grpbyColss as $c)

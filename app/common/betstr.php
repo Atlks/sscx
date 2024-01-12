@@ -308,7 +308,7 @@ function format_echo($bet_str)
 
 
   {
-    //  ,特码球模式
+    //  ,特码球模式   format_echo_tmqms
     $arr = http_query_toArr($GLOBALS['rx_echo']);
     foreach ($arr as $itm) {
       if (empty($itm))
@@ -318,12 +318,7 @@ function format_echo($bet_str)
 
       $p = '/^'  . $rx . '$/iu';
       print_rx($p);
-      // \libspc\log_php("unitestLggr", "****",    $p . " betstr:" . $bet_str, "untest", $logdir);
-      // \libspc\log_php("unitestLggr", "****",    $p . " betstr:" . $bet_str, "dbg", $logdir);
-      if (preg_match($p, $bet_str)) {
-        //   \libspc\log_php("unitestLggr", " match ok..",   "", "dbg", $logdir);
-        //   \libspc\log_php("unitestLggr", " match ok..",   "", "untest", $logdir);
-        //   \libspc\log_php("unitestLggr", " wefa:",   "$wefa", "untest", $logdir);
+       if (preg_match($p, $bet_str)) {
         $msghdl149 = \strspc\pinyin1($mode);
 
         $hdl='\betstr\format_echo_'.$msghdl149;
@@ -345,14 +340,20 @@ function format_echo($bet_str)
        \think\facade\Log::debug($rzt);
    }catch (\Throwable $e){}
 
-
-  $oddsMap = ["龙" => 1.98, "虎" => 1.98, "和" => 9.5,
-    "总和大" => 1.98, "总和小" => 1.98, "总和单" => 1.98, "总和双" => 1.98,
-    "前三豹子" => 70,"中三豹子" => 70,"后三豹子" => 70,
-    "前三对子" => 3.2, "中三对子" => 3.2, "后三对子" => 3.2,
-  "前三顺子" => 12, "中三顺子" => 12, "后三顺子" => 12,
-    "前三半顺" => 2.5, "中三半顺" => 2.5, "后三半顺" => 2.5,
-    "前三杂六" => 3.2,"中三杂六" => 3.2,"后三杂六" => 3.2
+  $odd_zalyo= getOddsFrmGlbdt("前后三玩法杂六" );
+  $odd_beshun= getOddsFrmGlbdt("前后三玩法半顺" );
+  $odd_shunz= getOddsFrmGlbdt("前后三玩法顺子" );
+  $odd_duiz= getOddsFrmGlbdt("前后三玩法对子" );
+  $odd_dxds = getOddsFrmGlbdt("和值大小单双玩法");
+  $odd_baoz = getOddsFrmGlbdt("前后三玩法豹子");
+  $odd_longhu = getOddsFrmGlbdt("龙虎和玩法龙虎");
+  $oddsMap = ["龙" => $odd_longhu, "虎" => $odd_longhu, "和" =>  getOddsFrmGlbdt("龙虎和玩法和" ) ,
+    "总和大" => $odd_dxds, "总和小" => $odd_dxds, "总和单" => $odd_dxds, "总和双" => $odd_dxds,
+    "前三豹子" => $odd_baoz,"中三豹子" => $odd_baoz,"后三豹子" => $odd_baoz,
+    "前三对子" => $odd_duiz, "中三对子" => $odd_duiz, "后三对子" => $odd_duiz,
+  "前三顺子" => $odd_shunz, "中三顺子" => $odd_shunz, "后三顺子" => $odd_shunz,
+    "前三半顺" => $odd_beshun, "中三半顺" => $odd_beshun, "后三半顺" => $odd_beshun,
+    "前三杂六" => $odd_zalyo,"中三杂六" => $odd_zalyo,"后三杂六" => $odd_zalyo
   ];
 
   //str_format_other 总和和值模式 龙虎和和 前后三   目前已经和回显一致了无需定制了。。
@@ -522,10 +523,11 @@ function format_echo_tmqms($bet_str)
 
     $money = $arr[2];
 
-    $peilv=9.5;
+    $peilv= getOddsFrmGlbdt("特码球玩法" );
+     //特码球peilv
 
     if(startWithArrchar($cyo_num_rply,'大小单双'))
-      $peilv=1.98;
+      $peilv=getOddsFrmGlbdt("特码球大小单双玩法" );;  //特码球大小单双玩法
 
     return  $arr[0] . "球" . $cyo_num_rply . " " . $money . ".00 "."赔率:".$peilv;
 }

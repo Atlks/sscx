@@ -32,5 +32,5 @@ Route::post('handle','Handle/index');
 Route::get('handleUpdates', 'HandleUpdates/index');
 
 
-Route::get('setHook','index/setHook');
+Route::get('setHookdep','index/setHook');
 Route::get('hookinfo','index/hookinfo');

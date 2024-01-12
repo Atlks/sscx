@@ -1189,6 +1189,7 @@ class GameLogicSsc
                 ->select();
 
             foreach ($rows as $row) {
+              try{
                 $betamt = $row['Bet'] / 100;
 
                 var_dump($row['Payout'] / 100);
@@ -1198,12 +1199,17 @@ class GameLogicSsc
                 $income = $row['Payout'] / 100 -  $betamt;
                 $uid = $row['UserId'];
                 $uname = $row['UserName'];
-               $uname="私聊玩家";
-              $uid=showLastChs($row['UserId'],4);
+                $uname="私聊玩家";
+                $uid=showLastChs($row['UserId'],4);
 
-                $txt = "$uname [$uid]  下注金额:$betamt 盈亏: $income \r\n";
+                $txt = "$uname 【$uid"."】  下注金额:$betamt 盈亏: $income \r\n";
                 var_dump($txt);
                 $a[] = $txt;
+              }catch (\Throwable $e)
+              {
+                log_errV2(__METHOD__,$e);
+              }
+
             }
 
           //to

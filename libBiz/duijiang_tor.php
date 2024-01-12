@@ -71,7 +71,7 @@ function addToList_toDuijEchoList($a)
 
         $income= calcIncome_forTo($betContext, $GLOBALS['kaij_num'],$betamt);
         //
-        $txt = "$uname [$uid]  下注金额:$betamt 盈亏: $income \r\n";
+        $txt = "$uname 【$uid"."】  下注金额:$betamt 盈亏: $income \r\n";
         // var_dump($txt);
         $a[] = $txt;
       }catch (Throwable $e)
