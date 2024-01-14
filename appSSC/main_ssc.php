@@ -1,5 +1,7 @@
 <?php
 
+//主循环的主函数
+
 //todo 分拆evt  ，，splt evt, bettime adjst optmz
 
 //cfg L306   开奖区块号
@@ -32,17 +34,17 @@ $lottery_no = "...";
 $alltimeCycle = 120; //sec
 $GLOBALS['alltimeCycle'] = 120;
 
-
+//todo 可以合并到 zautoload 加载基础类库
 require_once __DIR__ . "/../libBiz/zautoload.php";
 require_once __DIR__ . "/../lib/tlgrmV2.php";
 require __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . "/fenpan.php";
 
 
-// 应用初始化
+// 应用初始化导入tp类库
 $console = (new \think\App())->console;
 //$console->$catchExceptions=false;
-$console->call("calltpx");
+$console->call("imptTP");
 
 
 
@@ -76,7 +78,7 @@ function _main() {
   $GLOBALS['mainlg']="mainlg";
   log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
 
-  readBetTypesCfg();
+ // readBetTypesCfg744();
 
   \think\facade\Log::notice(__METHOD__ . json_encode(func_get_args()));
   global $lottery_no;
@@ -123,30 +125,30 @@ function _main() {
   log_vardumpRetval(__METHOD__,"", $GLOBALS['mainlg']);
 }
 
-function readBetTypesCfg() {
-  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
-
-  try {
-    $sql = "select * from bet_types ORDER BY RAND()  ";
-   logV3(__METHOD__,$sql,"mainlg");
-    $rows = \think\facade\Db::query($sql);
-    foreach ($rows as $r)
-    {
-
-    }
-    $GLOBALS['bet_types734'] = $rows;
-  } catch (Throwable $e) {
-    log_errV2($e,__METHOD__);
-  }
-
-//  $rows_shuzi = \think\facade\Db::query("select * from setting where name='特码球数字玩法_单球配额' limit 1 ");
-//  $GLOBALS['特码球数字玩法_单球配额']=$rows_shuzi[0]['value'];
-//  $rows_dxds = \think\facade\Db::query("select * from setting where name='特码球大小单双玩法_单球配额' limit 1 ");
-//  $GLOBALS['特码球大小单双玩法_单球配额']=$rows_dxds[0]['value'];
-
-
-}
-
+//function readBetTypesCfg() {
+//  log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
+//
+//  try {
+//    $sql = "select * from bet_types ORDER BY RAND()  ";
+//   logV3(__METHOD__,$sql,"mainlg");
+//    $rows = \think\facade\Db::query($sql);
+//    foreach ($rows as $r)
+//    {
+//
+//    }
+//    $GLOBALS['bet_types734'] = $rows;
+//  } catch (Throwable $e) {
+//    log_errV2($e,__METHOD__);
+//  }
+//
+////  $rows_shuzi = \think\facade\Db::query("select * from setting where name='特码球数字玩法_单球配额' limit 1 ");
+////  $GLOBALS['特码球数字玩法_单球配额']=$rows_shuzi[0]['value'];
+////  $rows_dxds = \think\facade\Db::query("select * from setting where name='特码球大小单双玩法_单球配额' limit 1 ");
+////  $GLOBALS['特码球大小单双玩法_单球配额']=$rows_dxds[0]['value'];
+//
+//
+//}
+//
 
 function startBetEvt() {
 
@@ -356,6 +358,7 @@ function getWarningBetTimeRemain() {
 
 }
 
+//废弃fun  startBetEvtDep
 
 function startBetEvtDep() {
   //// 更新状态开放投注  must close here lst for open b cs secury
@@ -458,7 +461,7 @@ function fenpan_wanrning_event() {
 
 }
 
-
+// 开奖过程
 //require  __DIR__ . "/../../lib/iniAutoload.php";
 function kaij_draw_evt() {
   log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
@@ -548,7 +551,7 @@ function kaij_draw_evt() {
   log_vardumpRetval(__METHOD__,"",$GLOBALS['mainlg']);
 
 }
-
+//todo move to tlgrm lib
 /**
  * @param GameLogicSsc $gmLgcSSc
  * @return void
@@ -568,6 +571,7 @@ function SendPicRzt(  $gmLgcSSc): void {
 
 }
 
+//todo move to tlgrm lib
 function sendMsgEx(mixed $chat_id, string $text, $rplyMkp = null) {
   log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);
 
@@ -590,7 +594,7 @@ function sendMsgEx(mixed $chat_id, string $text, $rplyMkp = null) {
   }
 
 }
-
+//todo move to tlgrm lib
 
 function sendMsgEx706(mixed $chat_id, string $text, $rplyMkp = null) {
   log_enterMethV2(__METHOD__,func_get_args(),$GLOBALS['mainlg']);

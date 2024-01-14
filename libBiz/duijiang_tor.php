@@ -121,6 +121,7 @@ function calcIncome_forTo($betContext, $kaij_num, $betamt) {
 
 }
 
+//todo 改为从 global 配置读取
 function getOdds908($betContext) {
 
   if (startsWith($betContext,"总和")  ) {

@@ -1,5 +1,6 @@
 <?php
 
+//ssc fun lib
 
 //_test205745();
 
@@ -17,7 +18,7 @@ function _test205745() {
 
 // 应用初始化
   $console = (new \think\App())->console;
-//$console->$catchExceptions=false;
+// $console->catchExceptions=false;
   $console->call("calltpx");
 
   readBetTypesCfg744();
@@ -72,6 +73,7 @@ function getOddsFrmGlbdt(string $bettype_wefa) {
     return $odds;
   }catch (\Throwable $e)
   {
+    log_errV2($e,__METHOD__);
     return  1.98;
   }
 

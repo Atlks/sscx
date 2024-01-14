@@ -75,7 +75,12 @@ $GLOBALS['msgrex_zuhe'] = $wefa_rex_zuhe . "&" . $wefa_rex;
 if (!function_exists("betstrX__split_convert_decode")) {
     function betstrX__split_convert_decode($bet_str_arr_clr)
     {
-        return \betstr\split_decode_split($bet_str_arr_clr);
+      log_enterMethV2(__METHOD__,func_get_args(),'btlg');
+
+      $split_decode_split = \betstr\split_decode_split($bet_str_arr_clr);
+      log_vardumpRetval(__METHOD__,$split_decode_split,'btlg');
+      return
+        $split_decode_split;
     }
 
 
@@ -84,7 +89,10 @@ if (!function_exists("betstrX__split_convert_decode")) {
 
     function betstrX__parse_getWefa($bet_nums)
     {
-        return \betstr\getWefa($bet_nums);
+      log_enterMethV2(__METHOD__,func_get_args(),'btlg');
+      $getWefa = \betstr\getWefa($bet_nums);
+      log_vardumpRetval(__METHOD__,$getWefa,'btlg');
+      return $getWefa;
     }
 
 
@@ -109,7 +117,10 @@ if (!function_exists("betstrX__split_convert_decode")) {
 
     function betstrX__convert_kaij_echo_ex($result_text)
     {
-        return \betstr\convert_kaij_echo_ex($result_text);
+      log_enterMethV2(__METHOD__,func_get_args(), 'mainlg' );
+      $convert_kaij_echo_ex = \betstr\convert_kaij_echo_ex($result_text);
+      log_vardumpRetval(__METHOD__,$convert_kaij_echo_ex,'mainlg');
+      return $convert_kaij_echo_ex;
     }
 
 

@@ -1,5 +1,6 @@
 <?php
 
+//str fun for bet
 
 //  b/大/30
 //var_dump(format_echo_bencyiBetLst("A/1/100"));;

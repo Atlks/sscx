@@ -18,7 +18,7 @@ return [
       'ssc_main' => 'app\common\mainx',
       'testx' => 'app\common\testCls',
       'calltp'=>'\calltp',
-      'calltpx'=> '\calltpx',
+      'calltpx'=> '\calltpx', 'imptTP'=> '\calltpx',
         
     ],
 ];

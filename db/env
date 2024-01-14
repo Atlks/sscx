@@ -1,0 +1,43 @@
+ 
+ 
+
+
+
+ 
+ 
+[app]
+debug = true
+trace = false
+APP_DEBUG =  true
+DEFAULT_TIMEZONE = Asia/Shanghai
+# trigger_sql  just cstm  def  APP_DEBUG 
+# ethapi= 4HAHGXUUHW3JP4EXUZWD6HNGT4P3KMNNXR
+eth_api_key=HZAQ8PVZPUBRSUAIJ7RISCA117IZY615QG
+cfgfilex=config/cfgx_ssc.php
+
+[database]
+hostname = 127.0.0.1
+database = jbdb
+username = jbdb
+password = ppp789456123
+hostport = 3306
+CHARSET = utf8mb4
+debug = false;
+
+
+[redis]
+host =127.0.0.1
+port =6379
+pw=
+select =4
+
+
+[game]
+
+gametype=1
+game_ini_class=  LotteryHash28
+swoole_port = 9501
+handle_game =  app\common\GameSsc
+
+[LANG]
+default_lang = zh-cn

@@ -23,3 +23,7 @@ https://api.telegram.org/bot6326214984:AAHoyB0GjWQ7E5fhdWhWPxl7ZWrlWvAop5g/getWe
 
 chmod -R 777 /www/wwwroot/ssc.521ck.vip/runtime
 chmod -R 777 /www/wwwroot/game.gq1sx.cc/runtime
+
+
+# clr lg
+ node  tool/clrlog.js
