@@ -405,20 +405,20 @@ namespace {
     log23::$filFrg("######" . $meth, "args", $func_get_args);
   }
 
-  function log_e_toGlbLog(Throwable|Exception $exception, string $meth, array $func_get_args) {
+  function log_e_toGlbLog(Throwable $exception, string $meth, array $func_get_args) {
 
     log23::err($meth, "arg", $func_get_args);
     log23::err($meth, "e", $exception);
 
   }
 
-  function log_ex_toLibLog(string $meth, Throwable|Exception $exception, $filFrg_libname) {
+  function log_ex_toLibLog(string $meth, Throwable $exception, $filFrg_libname) {
     log23::$filFrg_libname($meth, "e", $exception);
     $errFlg = $filFrg_libname . " ERR";
     log23::$errFlg($meth, "e", $exception);
   }
 
-  function log_err_toLibLog(string $meth, Throwable|Exception $exception, $filFrg) {
+  function log_err_toLibLog(string $meth, Throwable $exception, $filFrg) {
     log23::$filFrg($meth, "e", $exception);
     $errFlg = $filFrg . " ERR";
     log23::$errFlg($meth, "e", $exception);

@@ -1,24 +1,55 @@
 <?php
 
-require_once __DIR__."/../app/calltp.php";
-require_once __DIR__."/../lib/calltpx.php";
+
+//   config/console.php
+
+if(!class_exists("imptTp1129"))
+{
+    class imptTp1129 extends think\console\Command
+    {
+        protected function configure()
+        {
+            $this->setName('.');
+        }
+
+        protected function execute(think\console\Input $input, think\console\Output $output)
+        {
+            //$output->writeln("TestCommand:");
+            var_dump(111);
+        }
+    }
+
+}
+
+
+if(!function_exists("imptTplib"))
+{
+    function imptTplib()
+    {
+
+        // 应用初始化导入tp类库
+        $console = (new \think\App())->console;
+// $console->$catchExceptions=false;  dflt jst fas..
+        $console->call("导入TP类库");
+    }
+}
+
+
 // +----------------------------------------------------------------------
 // | 控制台配置
 // +----------------------------------------------------------------------
 return [
     // 指令定义
     'commands' => [
-        'runx' => 'app\main',
-      'cmd_lhc' => 'app\commonLhc\CmdLhc',
 
-      'swoole2' => 'app\common\mainx',
+
         'keywdReqHdlr' => 'app\common\keywdReqHdlr',
-      'msgHdlrLhc' => 'app\common\msgHdlrLhc',
+        'msgHdlrLhc' => 'app\common\msgHdlrLhc',
 
-      'ssc_main' => 'app\common\mainx',
-      'testx' => 'app\common\testCls',
-      'calltp'=>'\calltp',
-      'calltpx'=> '\calltpx', 'imptTP'=> '\calltpx',
-        
+
+        'imptTp' => '\imptTp1129',
+        '导入TP类库' => '\imptTp1129',
+
+
     ],
 ];

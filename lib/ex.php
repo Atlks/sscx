@@ -21,7 +21,9 @@ function loadErrHdr() {
 
 }
 
+require_once __DIR__ . "/../lib/logx.php";
 function ex_hdlr($exception) {
+
   try {
     //  \think\facade\Log::info (  json_encode($exception) );
     \libspc\log_err($exception, __METHOD__, $GLOBALS['$errdir'], "err");
